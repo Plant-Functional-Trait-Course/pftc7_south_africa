@@ -47,4 +47,39 @@ raw_data <- raw_data %>%
 # 4 datapoints are still not fixed, have not enough information to fix this yet. HHC7973, DEH6145, IFG4764, INM3250
 
 
+# making commas to points
+raw_data <- raw_data %>%
+  mutate(across(c(wet_mass_g, leaf_thickness_1_mm, leaf_thickness_2_mm, leaf_thickness_3_mm, veg_height_cm, rep_height_cm, dry_mass_g), as.numeric))
+
+
+# fixing missing ASPECT
+
+
+ggplot(aes(x = aspect, y = site_id, label = id), data = raw_data) +
+  geom_jitter() +
+  geom_text_repel(data = subset(raw_data, is.na(aspect)), nudge_y = 0.5, segment.size = 0.2)
+
+raw_data <- raw_data %>%
+  mutate(aspect = case_when(id %in% c("EBC2849", "EMJ1959", "ETC7447", "EPX9304", "CYT0765", "GHC4651", "IRE6770", "ISD4620", "DVZ3020", "DVI0509", "IVX4766", "HTI1269", "DIH9486", "HXS1079", "HCL1010", "HZF7684") ~ "east",
+                            id %in% c("EAP2076", "DXL0983", "ILV9642", "DND2812", "DCV2133", "DCM1884", "HOL9126", "HYV0206", "DIM6158", "IGO9419", "HLX8263", "IEA0066")  ~ "west",
+                            TRUE ~ aspect)) %>%   # Keep the original value for other IDs
+  mutate(plant_id = case_when(id %in% c("DXL0983")  ~ 3,
+                              TRUE ~ plant_id))
+
+#plotting
+ggplot(aes(x = leaf_thickness_1_mm, y = leaf_thickness_2_mm), data = raw_data) +
+  geom_point()
+ggplot(aes(x = species, y = leaf_thickness_2_mm), data = raw_data) +
+  geom_point()
+
+
+raw_data %>%
+  filter(site_id == 1, plot_id == 2) %>%
+  pivot_longer(cols = starts_with("leaf_thickness"), names_to = "measurement", values_to = "thickness") %>%
+  ggplot(aes(x = measurement, y = thickness, fill = measurement)) +
+  geom_boxplot(alpha = 0.7) +
+  facet_wrap(~ species, scales = "free") +
+  labs(title = "Leaf Thickness Distribution by Species (Site = 1, Plot = 1)", x = "Measurement", y = "Thickness") +
+  scale_fill_manual(values = c("blue", "red", "green")) +
+  theme_minimal()
 
