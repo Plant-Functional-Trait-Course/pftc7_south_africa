@@ -16,6 +16,9 @@ get_file(node = "hk2cy",
          path = "raw_data",
          remote_path = "raw_data/raw_trait_data")
 
+# get leaf areas
+source("R/clean_leaf_area.R")
+
 
 # import data
 raw_traits <- read_excel(path = "raw_data/PFTC7_SA_raw_traits_2023.xlsx",
@@ -25,7 +28,7 @@ raw_traits <- read_excel(path = "raw_data/PFTC7_SA_raw_traits_2023.xlsx",
 # valid_codes <- PFTCFunctions::get_PFTC_envelope_codes(seed = 202312)
 # dd |> anti_join(valid_codes, by = c("id" = "hashcode")) # zero
 
-dd <- raw_traits |>
+raw_traits <- raw_traits |>
   clean_names() |>
   # remove dry mass columns, will come from different dataset
   select(-dry_mass_g, -dry_wet_mass_ratio, -remark_dry_mass) |>
@@ -129,6 +132,36 @@ dd <- raw_traits |>
          leaf_thickness_3_mm = as.numeric(str_replace(leaf_thickness_3_mm, ",", ".")))
 
 
+###fix the names in the trait data
+name_trail <- read_delim("raw_data/std_names_editing.csv")
+
+taxon_dicionary <- name_trail |>
+  pivot_longer(cols = c(-species), names_to = "nr", values_to = "old_species") |>
+  filter(!is.na(old_species)) |>
+  select(-nr) |>
+  rename(new_species = species)
+
+raw_traits <- raw_traits |>
+  # make species names lower case and replace space
+  # change species variable formatting
+  mutate(species = tolower(species),
+         species = str_replace(species, " ", "_")) |>
+  # join trait dictionary and replace bad names with new names
+  left_join(taxon_dicionary, by = c("species" = "old_species")) |>
+  mutate(species = if_else(!is.na(new_species), new_species, species))
+
+
+
+# merge dry mass and leaf area
+raw_traits |>
+  #anti_join(raw_area, by = "id") # 362 leaves are only in area
+  #anti_join(dry_mass, by = "id") # 6 leaves only in dry mass
+  left_join(raw_area, by = "id") |>
+  left_join(dry_mass, by = "id")
+
+
+#export the corrected ft data
+#write_csv(ft_data_harmony, "clean_data/ft_data_names_cleaned.csv")
 
 
 
