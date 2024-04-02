@@ -29,7 +29,7 @@ FT <- read.csv("raw_data//PFTC7_SA_cleanish_traits_2023.csv")
 get_file(node = "hk2cy",
          file = "Heli_name_changes.xlsx",
          path = "raw_data",
-         remote_path = "raw_data//raw_trait_data")
+         remote_path = "raw_data/raw_trait_data")
 tochange <- read_excel("raw_data//Heli_name_changes.xlsx")
 
 #create a copy of the FT data to change the names in
