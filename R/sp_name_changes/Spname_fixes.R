@@ -4,7 +4,7 @@
 #These records are in the Heli_name_changes.xlsx file.
 #These names need to be changed in all datasets that are coupled to or derived from leaf scans!
 
-#Also, the identities of three Helichrysum species mixed up during the course.
+#Also, three Helichrysum species were wrongly identified during the course.
 #These names need to be changed in all datasets that contain Helichrysum species.
 #This is called the new Helichrysum naming system, and applying it should be the last step in data cleaning.
 
@@ -25,9 +25,12 @@ get_file(node = "hk2cy",
 FT <- read.csv("raw_data//PFTC7_SA_cleanish_traits_2023.csv")
 
 ###import table containing the leafID's of the records which need name changes
-#Download the following file from google drive:
-#PFTC7 - Student folder > trait_data > Data > Heli_name_changes.xlsx
-tochange <- read_excel("R/sp_name_changes/Heli_name_changes.xlsx")
+#Download the following file from OSF:
+get_file(node = "hk2cy",
+         file = "Heli_name_changes.xlsx",
+         path = "raw_data",
+         remote_path = "raw_data/raw_trait_data")
+tochange <- read_excel("raw_data//Heli_name_changes.xlsx")
 
 #create a copy of the FT data to change the names in
 FT_step_1 <- FT
