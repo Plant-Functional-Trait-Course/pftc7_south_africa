@@ -131,6 +131,20 @@ dd <- raw_traits |>
 
 
 
+###some helichrysum nudifolium and pallidum were wrongly identified, after checking the scanes Imke identified the ID's that have to be renamed
+#import the table with the names to change
+heli_changes <- read_excel("raw_data/temp/Heli_name_changes.xlsx")
+
+#get the ID's to change
+id_tochange <- heli_changes |>
+  select(ID)
+
+for(i in 1:nrow(dd)) {
+ if
+
+}
+
+
 
 # to do
 

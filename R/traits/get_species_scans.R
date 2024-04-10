@@ -2,6 +2,8 @@
 library(googledrive)
 library(googlesheets4)
 library(tidyverse)
+library(remotes)
+library(dataDownloader)
 
 # get current trait data
 
@@ -86,3 +88,29 @@ get_species_scans <- function(species_text,
 
 
 }
+
+
+##get heli nudifolium and pallidum
+drive_ls("PFTC7 - Student folder") %>%
+     dplyr::filter(name == "trait_data" ) %>%
+     dplyr::pull(id) %>%
+     as_id() %>%
+     drive_ls()%>%
+     dplyr::filter(name=="PFTC7_SA_raw_traits_2023")%>%
+     dplyr::pull(id) %>%
+     googlesheets4::read_sheet(sheet = "Gradient") -> grad_traits
+
+
+get_file(node = "hk2cy",
+         file = "PFTC7_SA_cleanish_traits_2023.csv",
+         path = "clean_data",
+         remote_path = "trait_data")
+
+grad_traits <- read_csv("clean_data/PFTC7_SA_cleanish_traits_2023.csv") |>
+  rename(ID = id)
+
+#get all nudifolium scans
+get_species_scans(species_text = "palli",
+                  google_traits_sheet = grad_traits,
+                  scan_directory = "D:/PFTC7_leaf_scans",
+                  temp_directory = "raw_data/temp/")
