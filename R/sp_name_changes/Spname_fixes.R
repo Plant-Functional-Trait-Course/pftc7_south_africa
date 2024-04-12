@@ -63,9 +63,17 @@ rm(correct_name, tochange, old_name, tochange_row, i)
 
 #### Step 2 - change the naming system for Helichrysum ####
 
+#download the new naming system from OSF
+get_file(node = "hk2cy",
+         file = "New Helichrysum naming system.xlsx",
+         path = "raw_data",
+         remote_path = "raw_data/raw_community_data")
+#import new naming system
+naming_system <- read_excel("raw_data/New Helichrysum naming system.xlsx")
+
 FT_step_2 <- FT_step_1 #create another copy for step 2 (changing Helichrysum names according to the new naming system)
 
-naming_system <- read_excel("R/sp_name_changes/Heli_naming_system.xlsx")
+
 
 for (i in 1:nrow(FT_step_2)) {
   old_name <- FT_step_1[i, 6]
