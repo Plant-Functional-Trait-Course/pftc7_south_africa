@@ -71,12 +71,25 @@ get_file(node = "hk2cy",
 #import new naming system
 naming_system <- read_excel("raw_data/New Helichrysum naming system.xlsx")
 
+#import other data which also needs names changed to the new naming system
+get_file(node = "hk2cy",
+         file = "PFTC_SA_clean_community_2023.csv",
+         path = "clean_data",
+         remote_path = "community_data")
+#import clean community data
+comm_step2 <- read.csv("clean_data/PFTC_SA_clean_community_2023.csv")
+
 FT_step_2 <- FT_step_1 #create another copy for step 2 (changing Helichrysum names according to the new naming system)
 
+#create a list of dataframes to apply the new naming system to
+datalist <- list(FT_step2, comm_step2)
 
+for(d in 1:length(datalist)) {
 
-for (i in 1:nrow(FT_step_2)) {
-  old_name <- FT_step_1[i, 6]
+  data <- datalist[[d]]
+
+for (i in 1:nrow(data)) {
+  old_name <- data[i, 6]
   new_name <- NA
 
   found <- FALSE
@@ -98,6 +111,7 @@ for (i in 1:nrow(FT_step_2)) {
     FT_step_2[i, 17] <- paste0("name changed from ", old_name, " to ", new_name)
   }
 }
+}#endloop through dataframes
 
 rm(old_name, new_name, found, i, j) # remove unnecessary variables
 
