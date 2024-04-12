@@ -77,19 +77,19 @@ get_file(node = "hk2cy",
          path = "clean_data",
          remote_path = "community_data")
 #import clean community data
-comm_step2 <- read.csv("clean_data/PFTC_SA_clean_community_2023.csv")
+comm_step_2 <- read.csv("clean_data/PFTC_SA_clean_community_2023.csv")
 
 FT_step_2 <- FT_step_1 #create another copy for step 2 (changing Helichrysum names according to the new naming system)
 
 #create a list of dataframes to apply the new naming system to
-datalist <- list(FT_step2, comm_step2)
+datalist <- list(FT_step_2, comm_step_2)
 
 for(d in 1:length(datalist)) {
 
   data <- datalist[[d]]
 
 for (i in 1:nrow(data)) {
-  old_name <- data[i, 6]
+  old_name <- data[i, which(colnames(data) == "species")]
   new_name <- NA
 
   found <- FALSE
