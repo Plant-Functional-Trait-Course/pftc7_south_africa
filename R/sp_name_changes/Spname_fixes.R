@@ -82,11 +82,11 @@ comm_step_2 <- read.csv("clean_data/PFTC_SA_clean_community_2023.csv")
 FT_step_2 <- FT_step_1 #create another copy for step 2 (changing Helichrysum names according to the new naming system)
 
 #create a list of dataframes to apply the new naming system to
-datalist <- list(FT_step_2, comm_step_2)
+datalist <- c("FT_step_2", "comm_step_2")
 
 for(d in 1:length(datalist)) {
 
-  data <- datalist[[d]]
+  data <- get(datalist[d])
 
 for (i in 1:nrow(data)) {
   old_name <- data[i, which(colnames(data) == "species")]
@@ -107,8 +107,10 @@ for (i in 1:nrow(data)) {
   }
 
   if (found) { # replaces the species in the trait database with the saved true name if "found" is "TRUE"
-    FT_step_2[i, 6] <- new_name
-    FT_step_2[i, 17] <- paste0("name changed from ", old_name, " to ", new_name)
+    data[i, 6] <- new_name
+    data[i, 17] <- paste0("name changed from ", old_name, " to ", new_name)
+
+
   }
 }
 }#endloop through dataframes
