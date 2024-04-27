@@ -32,13 +32,14 @@ get_file(node = "hk2cy",
          remote_path = "raw_data/raw_trait_data")
 tochange <- read_excel("raw_data//Heli_name_changes.xlsx")
 
-##species names need to be in th eformat genus_species. Ie no capitals, underscore separating genus and specific epithet
+###function to change speciesnames of wrongly identified leaves:
 correct_leaf_ID <- function(data, # dataframe to which name changes need to be applied
                             changes, #dataframe containg leafID's, their incorrect names as well as their correct names
                             data_ID_column,  #the name of the column in data that contains the leafID's, must be a string
                             data_species_column) #the name of the column in data that contains the species names, must be a string
+                                                 #species names must be in the format genus_species.
+                                                 #I.e. no capitals, with an underscore separating genus and specific epithet
 {
-
   for(i in 1:nrow(data)) {
 
     #if the id in the trait data matches any any of the id's in tochange:
@@ -57,50 +58,19 @@ correct_leaf_ID <- function(data, # dataframe to which name changes need to be a
       data[i, which(colnames(data) == data_species_column)] <- as.character(correct_name)
 
       #print a message to track changes made
-        print(paste0("row", "=", i, " ", ";", " ",
-                     "ID", "=",  data[i, which(colnames(data) == data_ID_column)], " ", ";", " ",
-                     "old = ", old_name, " ", ";", " ",
-                     "new = ", as.character(correct_name)))
-    }
-  }
-
+      print(paste0("row", "=", i, " ", ";", " ",
+                   "ID", "=",  data[i, which(colnames(data) == data_ID_column)], " ", ";", " ",
+                   "old = ", old_name, " ", ";", " ",
+                   "new = ", as.character(correct_name)))
+    }#close if loop
+  }#close loop through rows of data
   return(data)
-}
+}#end function
 
-FT_step_1 <- FT
-corrected <- correct_leaf_ID(data = FT_step_1, changes = tochange, data_ID_column = "id", data_species_column = "species")
-
-
+#apply function to functional trait data
+FT_step_1 <- correct_leaf_ID(data = FT, changes = tochange, data_ID_column = "id", data_species_column = "species")
 
 
-#create a copy of the FT data to change the names in
-FT_step_1 <- FT
-
-for(i in 1:nrow(FT_step_1)) {
-
-  #if the id in the trait data matches any any of the id's in tochange:
-  if(FT_step_1[i, which(colnames(FT_step_1) == "id")] %in% c(tochange$ID)) {
-
-    #get the old name
-    old_name <- FT_step_1[i, which(colnames(FT_step_1) == "species")]
-
-    #get the row in tochange which contains the correct name for this id
-    tochange_row <- match(FT_step_1[i, which(colnames(FT_step_1) == "id")], c(tochange$ID))
-
-    #get the correct name in this row
-    correct_name <- tochange[tochange_row, which(colnames(tochange) == "correct_name")]
-
-    #overwrite the species column in FT with this correct name
-    FT_step_1[i, which(colnames(FT_step_1) == "species")] <- as.character(correct_name)
-
-    #print a message to track changes made
-    print(paste0(i, "_", FT_step_1[i, which(colnames(FT_step_1) == "id")], " ",
-                 "old = ", old_name, " ",
-                "new = ", as.character(correct_name)))
-    }
-}
-
-rm(correct_name, tochange, old_name, tochange_row, i)
 
 #### Step 2 - change the naming system for Helichrysum ####
 
