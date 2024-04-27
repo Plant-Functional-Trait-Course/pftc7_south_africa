@@ -32,6 +32,47 @@ get_file(node = "hk2cy",
          remote_path = "raw_data/raw_trait_data")
 tochange <- read_excel("raw_data//Heli_name_changes.xlsx")
 
+##species names need to be in th eformat genus_species. Ie no capitals, underscore separating genus and specific epithet
+correct_leaf_ID <- function(data, # dataframe to which name changes need to be applied
+                            changes, #dataframe containg leafID's, their incorrect names as well as their correct names
+                            data_ID_column,  #the name of the column in data that contains the leafID's, must be a string
+                            data_species_column) #the name of the column in data that contains the species names, must be a string
+{
+
+  for(i in 1:nrow(data)) {
+
+    #if the id in the trait data matches any any of the id's in tochange:
+    if(data[i, which(colnames(data) == data_ID_column)] %in% c(changes$ID)) {
+
+      #get the old name
+      old_name <- data[i, which(colnames(data) == data_species_column)]
+
+      #get the row in tochange which contains the correct name for this id
+      tochange_row <- match(data[i, which(colnames(data) == data_ID_column)], c(changes$ID))
+
+      #get the correct name in this row
+      correct_name <- changes[tochange_row, which(colnames(changes) == "correct_name")]
+
+      #overwrite the species column in FT with this correct name
+      data[i, which(colnames(data) == data_species_column)] <- as.character(correct_name)
+
+      #print a message to track changes made
+        print(paste0("row", "=", i, " ", ";", " ",
+                     "ID", "=",  data[i, which(colnames(data) == data_ID_column)], " ", ";", " ",
+                     "old = ", old_name, " ", ";", " ",
+                     "new = ", as.character(correct_name)))
+    }
+  }
+
+  return(data)
+}
+
+FT_step_1 <- FT
+corrected <- correct_leaf_ID(data = FT_step_1, changes = tochange, data_ID_column = "id", data_species_column = "species")
+
+
+
+
 #create a copy of the FT data to change the names in
 FT_step_1 <- FT
 
