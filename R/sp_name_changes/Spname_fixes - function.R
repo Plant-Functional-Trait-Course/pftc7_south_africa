@@ -8,6 +8,9 @@
 #These names need to be changed in all datasets that contain Helichrysum species.
 #This is called the new Helichrysum naming system, and applying it should be the last step in data cleaning.
 
+#In this script, functions are created to change the names of incorrectly identified leaf ID's, and to apply the new heli naming system.
+#The functions are then applied to the trait data and community data
+
 #remotes::install_github("Between-the-Fjords/dataDownloader")
 library(dataDownloader)
 library(tidyverse)
@@ -135,4 +138,4 @@ comm_new_name_system <- new_heli_naming_system(data = comm, naming_system = heli
 write.csv(FT_new_name_system, "clean_data/PFTC7_SA_clean_traits_19Apr2024.csv") # write a new file with the finalized data
 write.csv(comm_new_name_system, "clean_data/PFTC7_SA_clean_community_19Apr2024.csv")
 
-# since this should be the final step in the data cleaning process data will be save in clean_data
+# since this should be the final step in the data cleaning process data will be saved in clean_data
