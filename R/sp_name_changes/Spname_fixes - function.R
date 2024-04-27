@@ -80,7 +80,7 @@ get_file(node = "hk2cy",
          path = "raw_data",
          remote_path = "raw_data/raw_community_data")
 #import new naming system
-naming_system <- read_excel("raw_data/New Helichrysum naming system.xlsx")
+heli_naming_system <- read_excel("raw_data/New Helichrysum naming system.xlsx")
 
 #import other data which also needs names changed to the new naming system
 get_file(node = "hk2cy",
@@ -91,6 +91,46 @@ get_file(node = "hk2cy",
 comm_step_2 <- read.csv("clean_data/PFTC_SA_clean_community_2023.csv")
 
 FT_step_2 <- FT_step_1 #create another copy for step 2 (changing Helichrysum names according to the new naming system)
+
+
+new_heli_naming_system <- function(data, #dataframe to which the new helichrysum naming system should be applied to
+                                   data_species_column, #column in data contain the speciesnames, must be a string
+                                   naming_system) #dataframe containg the old and new helichrysum Id's
+                                    {
+
+    for (i in 1:nrow(data)) {
+      old_name <- data[i, which(colnames(data) == data_species_column)]
+      new_name <- NA
+
+      found <- FALSE
+      for (j in 1:nrow(naming_system)) { # looks whether species name should be corrected and replaces it with the new_heli_name_system in case
+        found <- grepl(old_name, naming_system[j, 1])
+
+        if (is.na(found)){ # only runs if the species is missing
+          found <- FALSE
+        }
+
+        if (found){ # only runs if the species is a synonym
+          new_name <- naming_system[j, 2] # finds the true name of the species and saves it
+          break
+        }
+      }
+
+      if (found) { # replaces the species in the trait database with the saved true name if "found" is "TRUE"
+        data[i, which(colnames(data) == data_species_column)] <- new_name
+
+        #print message to keep track of which names changed
+        print(paste0("row", "=", i, " ", "name changed from ", old_name, " to ", new_name))
+      }
+
+    }#end loop through rows
+  return(data)
+}#end function
+
+final_comm <- new_heli_naming_system(data = comm_step_2, naming_system = heli_naming_system, data_species_column = "species")
+
+
+
 
 #create a list of dataframes to apply the new naming system to
 datalist <- c("FT_step_2", "comm_step_2")
