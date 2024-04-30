@@ -20,6 +20,21 @@ comm_wide <- comm |>
   column_to_rownames(var = "plotref")
 comm_wide <- as.data.frame(comm_wide)
 
+
+comm |>
+  filter(is.na(treatment_only_for_range_x)) |> #only work with site 1-5, not rangex site
+  mutate(plotref = paste(site_id, aspect, plot_id, sep = "_")) |>
+  select(plotref, species, cover) |>
+  group_by(plotref, species) |>
+  summarise(n = n(), .groups = "drop") |>
+  filter(n > 1L)
+
+comm |>
+  mutate(plotref = paste(site_id, aspect, plot_id, sep = "_")) |>
+  filter(plotref == "2_E_4") |>
+  select(species) |>
+  arrange(species)
+
 #there must be multiple entries of the same species in a plot causing the list
 
 #replace NULL values with 0
