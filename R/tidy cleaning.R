@@ -256,7 +256,11 @@ community_join <- community_join |>
   select(!(fertility:fertility_extra))
 
 #final step is to make sure a species name does not appear more than once in the same plot.
-
+doubles <- community_join |>
+              group_by(site_id, aspect, plot_id, species) |>
+              summarise(n = n(), .groups = "drop") |>
+              filter(n > 1L)
+#these doubles need to be removed.
 
 #write the file to a .csv
 write_csv(community_join, "clean_data/community_data_names_cleaned.csv")
