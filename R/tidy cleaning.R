@@ -260,10 +260,32 @@ doubles <- community_join |>
               group_by(site_id, aspect, plot_id, species) |>
               summarise(n = n(), .groups = "drop") |>
               filter(n > 1L)
-#these doubles need to be removed.
+#these doubles need to be removed, let the entry with the highest cover remain
+community_join_final <- community_join |>
+  distinct(site_id, aspect, plot_id, treatment_only_for_range_x, species, cover, fertility_all, .keep_all = TRUE)
+
+for(d in 1:nrow(doubles)) {
+  record <- doubles[d, ]
+
+  community_problems <- community_join |>
+    filter(site_id == record$site_id,
+           aspect == record$aspect,
+           plot_id == record$plot_id,
+           species == record$species)
+
+  if(community_problems$cover[1] != community_problems$cover[2]) {
+  community_join_final <- community_join_final |>
+      filter(!(site_id == record$site_id &
+               aspect == record$aspect &
+                   plot_id == record$plot_id &
+                       species == record$species &
+                           cover == min(community_problems$cover)))
+  }
+} #doubles had 5 species, one with 3 occurrences in a plot and the rest with two.
+#Thus, community join final must have 6 records fewer than community join.
 
 #write the file to a .csv
-write_csv(community_join, "clean_data/community_data_names_cleaned.csv")
+write_csv(community_join_final, "clean_data/community_data_names_cleaned.csv")
 
 
 ###fix the names in the trait data
