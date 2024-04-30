@@ -129,7 +129,7 @@ get_file(node = "hk2cy",
          path = "clean_data",
          remote_path = "community_data")
 #import clean community data
-comm <- read.csv("clean_data/PFTC_SA_clean_community_2023.csv")
+comm <- read_csv("clean_data/community_data_names_cleaned.csv")
 
 ##apply function to trait data and community data
 FT_new_name_system <- new_heli_naming_system(data = FT_step_1, naming_system = heli_naming_system, data_species_column = "species")
