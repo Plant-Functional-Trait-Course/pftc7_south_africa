@@ -100,7 +100,7 @@ fert <- bind_cols(fert_date, raw_fert) |>
 
 
 ###Standardise the species names####
-###The completed name trail is on OSF, do not run this is you want to download it###
+###The completed name trail is on OSF, do not run this if you want to download it###
 
 
 ###Creating the name trail
@@ -157,7 +157,7 @@ write_csv(ft_excl, "raw_data/ft_mismatch_names.csv")
 get_file(node = "hk2cy",
          file = "std_names_editing.csv",
          path = "raw_data",
-         remote_path = "raw_data/raw_cover_and_fertility_data")
+         remote_path = "raw_data/raw_community_data")
 
 name_trail <- read_csv("raw_data/std_names_editing.csv")
 #standard names are in the species column
@@ -254,6 +254,10 @@ for (i in 1:nrow(community_join)) {
 #remove the fertility and fertility extra columns
 community_join <- community_join |>
   select(!(fertility:fertility_extra))
+
+#final step is to make sure a species name does not appear more than once in the same plot.
+
+
 #write the file to a .csv
 write_csv(community_join, "clean_data/community_data_names_cleaned.csv")
 
