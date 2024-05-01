@@ -37,7 +37,7 @@ cover <- bind_cols(date, raw_cover) |>
   pivot_longer(cols = -c(date:treatment_only_for_range_x), names_to = "species", values_to = "cover") |> #make it long format
   filter(!is.na(cover)) |> #remove rows where the sp was not present in a plot
   mutate(cover = as.numeric(cover), #make cover numeric
-         elevation = as.numeric(elevation))   #make elevation numeric
+         elevation = as.numeric(elevation)) #make elevation numeric
 
 
 ##Import and clean the extra data with the species added during FT sampling
@@ -262,7 +262,13 @@ doubles <- community_join |>
               filter(n > 1L)
 #these doubles need to be removed, let the entry with the highest cover remain
 community_join_final <- community_join |>
-  distinct(site_id, aspect, plot_id, treatment_only_for_range_x, species, cover, fertility_all, .keep_all = TRUE)
+  distinct(site_id, aspect, plot_id, treatment_only_for_range_x, species, cover, fertility_all, .keep_all = TRUE) |>
+  mutate(elevation = case_when(site_id == 1 ~ 2000, #make sure that every site has an elevation value
+                               site_id == 2 ~ 2200,
+                               site_id == 3 ~ 2400,
+                               site_id == 4 ~ 2600,
+                               site_id == 5 ~ 2800,
+                               site_id == 6 ~ 3000))
 
 for(d in 1:nrow(doubles)) {
   record <- doubles[d, ]
