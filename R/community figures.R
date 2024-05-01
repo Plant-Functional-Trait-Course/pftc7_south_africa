@@ -58,9 +58,12 @@ site_scores_join$elevation <- as.factor(site_scores_join$elevation)
 pal <- brewer.pal(5, "Set2")
 
 ##now create the ordination plot
-ggplot(site_scores_join, aes(x = NMDS1, y = NMDS2, color = elevation, shape = aspect)) +
-  geom_point() +
-  theme_classic() +
-  scale_color_manual(values = c(pal)) +
-  scale_shape_manual(labels = c("East", "West"), values = c(1, 16)) +
-  labs(color = "Elevation (m.a.s.l.)", shape = "Aspect")
+nmds_sites <- ggplot(site_scores_join, aes(x = NMDS1, y = NMDS2, color = elevation, shape = aspect)) +
+                geom_point() +
+                theme_classic() +
+                scale_color_manual(values = c(pal)) +
+                scale_shape_manual(labels = c("East", "West"), values = c(1, 16)) +
+                labs(color = "Elevation (m.a.s.l.)", shape = "Aspect") +
+                theme(legend.position = "right")
+
+ggsave("nmds_sites.png", nmds_sites, path = "Figures", height = 1000, width = 1500, units = "px")
