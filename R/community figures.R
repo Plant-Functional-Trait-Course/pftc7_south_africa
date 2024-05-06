@@ -6,14 +6,7 @@ library(RColorBrewer)
 library(vegan)
 
 #import community data
-comm <- read.csv("clean_data/PFTC7_SA_clean_community_19Apr2024.csv", row.names = 1) |>
-  mutate(elevation = case_when(site_id == 1 ~ 2000,
-                               site_id == 2 ~ 2200,
-                               site_id == 3 ~ 2400,
-                               site_id == 4 ~ 2600,
-                               site_id == 5 ~ 2800,
-                               site_id == 6 ~ 3000))
-
+comm <- read.csv("clean_data/PFTC7_SA_clean_community_19Apr2024.csv", row.names = 1)
 comm$site_id <- as.factor(comm$site_id)
 comm$aspect <- as.factor(comm$aspect)
 comm$plot_id <- as.factor(as.numeric(comm$plot_id))
@@ -21,7 +14,7 @@ comm$cover <- as.numeric(comm$cover)
 
 #transform to wide so that we can use it in nmds
 comm_wide <- comm |>
-  filter(is.na(treatment_only_for_range_x)) |> #only work with site 1-5, not rangex site
+  #filter(is.na(treatment_only_for_range_x)) |> #only work with site 1-5, not rangex site
   mutate(plotref = paste(site_id, aspect, plot_id, sep = "_")) |>
   select(plotref, species, cover) |>
   pivot_wider(names_from = species, values_from = cover) |>
@@ -46,24 +39,32 @@ ord <-metaMDS(comm_wide, distance = "bray", k = 3)
 site_scores <- as.data.frame(scores(ord, display = "sites"))
 #add the elevation and aspect to the sites_scores dataframe
 siteinfo <- comm |>
-  filter(is.na(treatment_only_for_range_x)) |> #remove rangex records
-  distinct(site_id, elevation, aspect, plot_id) |>
+  #filter(is.na(treatment_only_for_range_x)) |> #remove rangex records
+  distinct(site_id, elevation, aspect, treatment_only_for_range_x, plot_id) |>
   mutate(plotref = paste(site_id, aspect, plot_id, sep = "_"))
 
 site_scores_join <- site_scores |>
   rownames_to_column(var = "plotref") |>
-  left_join(siteinfo, by = "plotref")
+  left_join(siteinfo, by = "plotref") |>
+  #create a "treatment"column with either the aspects or th erangex treatments
+  mutate(trmt = case_when(is.na(treatment_only_for_range_x) ~ as.character(aspect),
+                          .default = as.character(treatment_only_for_range_x)))
 site_scores_join$elevation <- as.factor(site_scores_join$elevation)
 
-pal <- brewer.pal(5, "Set2")
+pal <- brewer.pal(7, "Set1")[c(1,2,3,4,5,7)]
 
 ##now create the ordination plot
-nmds_sites <- ggplot(site_scores_join, aes(x = NMDS1, y = NMDS2, color = elevation, shape = aspect)) +
+nmds_sites <- ggplot(site_scores_join, aes(x = NMDS1, y = NMDS2, color = elevation,
+                                           shape = factor(trmt, levels = c("E", "W", "Control", "OTC")))) +
                 geom_point() +
                 theme_classic() +
                 scale_color_manual(values = c(pal)) +
-                scale_shape_manual(labels = c("East", "West"), values = c(1, 16)) +
-                labs(color = "Elevation (m.a.s.l.)", shape = "Aspect") +
+                scale_shape_manual(labels = c("East", "West", "Control", "Warming"), values = c(1, 16, 12,15)) +
+                labs(color = "Elevation (m.a.s.l.)", shape = "Treatment") +
                 theme(legend.position = "right")
 
-ggsave("nmds_sites.png", nmds_sites, path = "Figures", height = 1000, width = 1500, units = "px")
+ggsave("nmds_sites.png", nmds_sites, path = "Figures", height = 1200, width = 1500, units = "px")
+
+
+
+
