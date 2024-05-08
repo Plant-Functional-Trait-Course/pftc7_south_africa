@@ -49,6 +49,8 @@ clean_data/*
 *.png
 *.pdf
 *.jpeg
+*.jpg
+*.tif
 
 *.csv
 *.xls
