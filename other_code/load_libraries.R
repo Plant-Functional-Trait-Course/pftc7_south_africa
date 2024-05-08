@@ -1,0 +1,21 @@
+# load libraries
+
+library(targets)
+library(tarchetypes)
+#remotes::install_github("Between-the-Fjords/dataDownloader")
+library(dataDownloader)
+library(tidyverse)
+library(readxl)
+library(performance)
+#remotes::install_github("audhalbritter/dataDocumentation")
+library(dataDocumentation)
+library(traitstrap)
+library(ggcorrplot)
+library(broom)
+library(vegan)
+#remotes::install_github("gavinsimpson/ggvegan")
+library(ggvegan)
+library(glue)
+library(patchwork)
+library(wesanderson)
+
