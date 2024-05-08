@@ -38,8 +38,10 @@ loop.files <-  function(files){
 # LeafArea.raw_total <- plyr::ldply(list.of.files, loop.files)
 
 # test run.ij
-dd <- run.ij(set.directory = "raw_data/traits/test/", distance.pixel = 237, known.distance = 2, log = TRUE, low.size = 0.1, trim.pixel = 58, trim.pixel.right = 150, trim.pixel.top = 1500, save.image = TRUE)
+dd <- run.ij(set.directory = "test/", distance.pixel = 237, known.distance = 2, log = TRUE, low.size = 0.1, trim.pixel = 58, trim.pixel.right = 150, trim.pixel.top = 1500, save.image = TRUE)
 # dd$summary
+
+run.ij(set.directory = "test/", distance.pixel = 237, known.distance = 2, log = TRUE, low.size = 0.1, trim.pixel = 58, save.image = TRUE)
 
 
 ###########################################################################
