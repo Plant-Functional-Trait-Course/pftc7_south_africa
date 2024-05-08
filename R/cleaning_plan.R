@@ -1,6 +1,12 @@
-# transformation plan
+# cleaning plan
 
-tranformation_plan <- list(
+cleaning_plan <- list(
+
+  # clean dry mass
+  tar_target(
+    name = community,
+    command = clean_community(raw_cover, raw_extra, raw_fertility, name_trail)
+  ),
 
   # clean dry mass
   tar_target(
