@@ -6,7 +6,9 @@ library(RColorBrewer)
 library(vegan)
 
 #import community data
-comm <- read.csv("clean_data/PFTC7_SA_clean_community_19Apr2024.csv", row.names = 1)
+comm <- read.csv("clean_data/PFTC7_SA_clean_community_19Apr2024.csv", row.names = 1) |>
+  mutate(plotref = paste(site_id, aspect, plot_id, sep = "_"))
+comm$plotref <- as.factor(comm$plotref)
 comm$site_id <- as.factor(comm$site_id)
 comm$aspect <- as.factor(comm$aspect)
 comm$plot_id <- as.factor(as.numeric(comm$plot_id))
@@ -66,5 +68,68 @@ nmds_sites <- ggplot(site_scores_join, aes(x = NMDS1, y = NMDS2, color = elevati
 ggsave("nmds_sites.png", nmds_sites, path = "Figures", height = 1200, width = 1500, units = "px")
 
 
+####Descriptive stats####
+#dominant species
+sp_totalcover <- comm |> #sort species by highest total cover
+  group_by(species) |>
+  summarise(totalcover = sum(cover)) |>
+  arrange(desc(totalcover))
 
 
+#number of species
+nsp <- ncol(comm_wide) #173
+#number of plots
+nplots <- nrow(comm_wide) #60
+
+#species richness per site
+sitelevel_stats <- comm |>
+  group_by(site_id) |>
+  distinct(species) |>
+  summarise(nsp = n())
+
+#species richness per plot
+plotlevel_stats <- comm |>
+                    group_by(plotref) |>
+                    summarise (sprichness = n()) |>
+  left_join(siteinfo, by = "plotref")
+
+#mean overall species richness
+mean_sprichness <- mean(plotlevel_stats$sprichness)
+se_mean_sprichness <- sd(plotlevel_stats$sprichness)/sqrt(nplots)
+
+
+##Species richness on different aspects and along the elevation gradient##
+aspect_level_stats <- comm |>
+  #filter(is.na(treatment_only_for_range_x)) |>
+  group_by(plotref) |>
+  mutate(nsp_plot = n()) |>
+  ungroup() |>
+  group_by(site_id, aspect) |>
+  mutate(mean_sprichness = mean(nsp_plot),
+         se_sprichness = sd(nsp_plot)/sqrt(5)) |>
+  distinct(site_id, elevation, aspect,
+           mean_sprichness, se_sprichness)
+aspect_level_stats$elevation <- as.factor(aspect_level_stats$elevation)
+
+aspect_barplot <- ggplot(aspect_level_stats, aes(x = elevation, y = mean_sprichness, fill = aspect)) +
+  geom_bar(position = "dodge", width = 0.7, stat = "identity", alpha = 0.7, colour = "black") +
+  scale_fill_manual(values = c("white", "black"), labels = c("East", "West")) +
+  geom_errorbar(aes(x = elevation, ymin = mean_sprichness - se_sprichness, ymax = mean_sprichness + se_sprichness),
+                width = 0.4, position = position_dodge(width = 0.7)) +
+  labs(x = 'Elevation (m.a.s.l)', y = "Mean species richness", fill = 'Aspect') +
+  theme_classic()
+
+ggsave("aspect_barplot.png", aspect_barplot, path = "Figures", height = 1000, width = 1400, units = "px")
+
+
+###Fertility###
+#what percentage of records were fertile?
+fertile <- comm |>
+  filter(fertility_all == "y") |>
+  summarise(n_fertile_records = n())
+
+infertile <- comm |>
+  filter(fertility_all == "n") |>
+  summarise(n_infertile_records = n())
+
+percent_fertile_records <- fertile$n_fertile_records/(fertile$n_fertile_records + infertile$n_infertile_records)
