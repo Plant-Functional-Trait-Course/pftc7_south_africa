@@ -150,7 +150,7 @@ fertplot <- ggplot(prop, aes(x = as.factor(elevation), y = proportion)) +
   scale_fill_manual(values = c(palette[7], palette[4]) ,
                     labels = c("Not fertile", "Fertile")) +
   theme_classic() +
-  xlab("Elevation") +
+  xlab("Elevation (m.a.s.l.)") +
   ylab("Proportion") +
   theme(legend.title = element_blank())
 
