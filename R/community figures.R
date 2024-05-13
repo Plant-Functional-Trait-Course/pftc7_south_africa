@@ -133,3 +133,25 @@ infertile <- comm |>
   summarise(n_infertile_records = n())
 
 percent_fertile_records <- fertile$n_fertile_records/(fertile$n_fertile_records + infertile$n_infertile_records)
+
+##proportion of fertile sp along elevation##
+prop <- comm |>
+  filter(!is.na(fertility_all)) |>
+  group_by(elevation, fertility_all) |>
+  summarize(count = n()) |>
+  ungroup() |>
+  group_by(elevation) |>
+  mutate(proportion = count/sum(count))
+
+palette <- brewer.pal(8, "Dark2")
+
+fertplot <- ggplot(prop, aes(x = as.factor(elevation), y = proportion)) +
+  geom_bar(aes(fill = fertility_all), position = position_stack(), stat = "identity", alpha = 0.6) +
+  scale_fill_manual(values = c(palette[7], palette[4]) ,
+                    labels = c("Not fertile", "Fertile")) +
+  theme_classic() +
+  xlab("Elevation") +
+  ylab("Proportion") +
+  theme(legend.title = element_blank())
+
+ggsave("fertility_barplot.png",fertplot,path = "Figures")
