@@ -41,6 +41,16 @@ import_plan <- list(
     format = "file"
   ),
 
+  # dry mass
+  tar_target(
+    name = dry_mass_download,
+    command =  get_file(node = "hk2cy",
+                        file = "PFTC7_SA_raw_dry_mass_2023_version2024.csv",
+                        path = "raw_data",
+                        remote_path = "raw_data/raw_trait_data"),
+    format = "file"
+  ),
+
   # download table containing the leafID's of the records which need name changes
   tar_target(
     name = heli_name_changes_download,
@@ -111,8 +121,7 @@ import_plan <- list(
   # import raw dry mass
   tar_target(
     name = raw_dry_mass,
-    command = read_excel(path = traits_download,
-                         sheet = "DryMass")
+    command = read_csv(file = dry_mass_download)
   )
 
 )
