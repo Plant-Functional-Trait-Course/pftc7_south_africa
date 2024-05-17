@@ -24,10 +24,6 @@ tar_source()
 #Combine target plans
 combined_plan <- c(
   import_plan,
-  tranformation_plan
-  # analysis_plan,
-  # figure_plan#,
-  #manuscript_plan
-  #si_plan
-  # si_figure_plan
+  cleaning_plan,
+  output_plan
 )
