@@ -1,7 +1,7 @@
 ###Cleaning veg cover, fertility and functional trait data###
 
 
-clean_community <- function(raw_cover, raw_extra, raw_fertility, name_trail){
+clean_community <- function(raw_cover, raw_extra, raw_fertility, name_trail, heli_naming_system){
 
   raw_cover2 <- raw_cover |>
     t() |> #transpose the matrix
@@ -162,4 +162,12 @@ clean_community <- function(raw_cover, raw_extra, raw_fertility, name_trail){
   community_join <- community_join |>
     select(!(fertility:fertility_extra))
 
+  # fix names
+  community <- new_heli_naming_system(data = community_join,
+                                                 naming_system = heli_naming_system,
+                                                 data_species_column = "species")
+
 }
+
+
+
