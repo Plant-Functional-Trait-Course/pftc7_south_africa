@@ -61,7 +61,7 @@ nmds_sites <- ggplot(site_scores_join, aes(x = NMDS1, y = NMDS2, color = elevati
                 geom_point() +
                 theme_classic() +
                 scale_color_manual(values = c(pal)) +
-                scale_shape_manual(labels = c("East", "West", "Control", "Warming"), values = c(1, 16, 12,15)) +
+                scale_shape_manual(labels = c("East", "West", "West - Control", "West - Warming"), values = c(1, 16, 16 ,17)) +
                 labs(color = "Elevation (m.a.s.l.)", shape = "Treatment") +
                 theme(legend.position = "right")
 
@@ -99,27 +99,23 @@ se_mean_sprichness <- sd(plotlevel_stats$sprichness)/sqrt(nplots)
 
 
 ##Species richness on different aspects and along the elevation gradient##
-aspect_level_stats <- comm |>
-  #filter(is.na(treatment_only_for_range_x)) |>
+plot_level_stats <- comm |>
   group_by(plotref) |>
   mutate(nsp_plot = n()) |>
   ungroup() |>
-  group_by(site_id, aspect) |>
-  mutate(mean_sprichness = mean(nsp_plot),
-         se_sprichness = sd(nsp_plot)/sqrt(5)) |>
-  distinct(site_id, elevation, aspect,
-           mean_sprichness, se_sprichness)
-aspect_level_stats$elevation <- as.factor(aspect_level_stats$elevation)
+  select(!c(species,cover,fertility_all)) |>
+  distinct(plotref, .keep_all = T)
+plot_level_stats$elevation <- as.factor(plot_level_stats$elevation)
 
-aspect_barplot <- ggplot(aspect_level_stats, aes(x = elevation, y = mean_sprichness, fill = aspect)) +
-  geom_bar(position = "dodge", width = 0.7, stat = "identity", alpha = 0.7, colour = "black") +
-  scale_fill_manual(values = c("white", "black"), labels = c("East", "West")) +
-  geom_errorbar(aes(x = elevation, ymin = mean_sprichness - se_sprichness, ymax = mean_sprichness + se_sprichness),
-                width = 0.4, position = position_dodge(width = 0.7)) +
-  labs(x = 'Elevation (m.a.s.l)', y = "Mean species richness", fill = 'Aspect') +
+pal <- brewer.pal(7, "Set1")[c(3,7)]
+
+aspect_violin <- ggplot(plot_level_stats, aes(x = elevation, y = nsp_plot, fill = aspect)) +
+  geom_violin(alpha = 0.7) +
+  scale_fill_manual(values = pal, labels = c("East", "West")) +
+  labs(x = 'Elevation (m.a.s.l)', y = "Species richness", fill = 'Aspect') +
   theme_classic()
 
-ggsave("aspect_barplot.png", aspect_barplot, path = "Figures", height = 1000, width = 1400, units = "px")
+ggsave("aspect_violin.png", aspect_violin, path = "Figures", height = 1000, width = 1400, units = "px")
 
 
 ###Fertility###
