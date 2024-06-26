@@ -51,6 +51,16 @@ import_plan <- list(
     format = "file"
   ),
 
+  # leaf area
+  tar_target(
+    name = leaf_area_download,
+    command =  get_file(node = "hk2cy",
+                        file = "PFTC7_SA_raw_leaf_area_2023.csv",
+                        path = "raw_data",
+                        remote_path = "raw_data/raw_trait_data"),
+    format = "file"
+  ),
+
   # download table containing the leafID's of the records which need name changes
   tar_target(
     name = heli_name_changes_download,
@@ -122,6 +132,12 @@ import_plan <- list(
   tar_target(
     name = raw_dry_mass,
     command = read_csv(file = dry_mass_download)
+  ),
+
+  # import raw leaf area
+  tar_target(
+    name = raw_leaf_area,
+    command = read_csv(file = leaf_area_download)
   )
 
 )
