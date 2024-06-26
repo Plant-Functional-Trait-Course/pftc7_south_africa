@@ -24,6 +24,7 @@ clean_dry_mass <- function(raw_dry_mass){
 
 }
 
+
 # double dry mass!!!
 # what is the problem with these??? -> check scans and envelopes, seems only to be one scan
 # dry_mass |>
@@ -87,8 +88,7 @@ clean_dry_mass <- function(raw_dry_mass){
 
 # DZC6492 Enter as is - species ID was incorrect and original material was -> Cannot find this scan on OSF. !!!
 
-# DDF1749 =Pimpernella caffra -> The name is changed to Pimpinella caffra during the name cleaning. Comment can be ignored
-!!!
+# DDF1749 =Pimpernella caffra -> The name is changed to Pimpinella caffra during the name cleaning. Comment can be ignored !!!
 
 # error with leaf -> check when checking stipules etc.
 # ISD4620 Stipules cut off; do include -> check scan
@@ -134,4 +134,3 @@ clean_dry_mass <- function(raw_dry_mass){
 # dry_mass |>
 #   ggplot(aes(x = dry_mass_g)) +
 #   geom_histogram()
-
