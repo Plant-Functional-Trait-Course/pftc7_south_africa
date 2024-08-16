@@ -16,6 +16,8 @@ clean_dry_mass <- function(raw_dry_mass){
                           id == "HIW7459" ~ "HJA5576",
                           TRUE ~ id)) |>
     mutate(dry_mass_g = as.numeric(str_replace(dry_mass_g, ",", ".")),
+           # Carmens comment: HBH6091- dry mass = 0.0922
+           dry_mass_g = if_else(id == "HBH6091", 0.0922, dry_mass_g),
            dry_mass_g = if_else(id == "IVS5393", NA_real_, dry_mass_g)) |>
     # remark damage
     mutate(remarks = if_else(id == "IEU4695", "damaged leaf", remarks)) |>
