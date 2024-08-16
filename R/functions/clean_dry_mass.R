@@ -42,9 +42,9 @@ clean_dry_mass <- function(raw_dry_mass){
 
 # double dry mass!!!
 # what is the problem with these??? -> check scans and envelopes, seems only to be one scan
-dry_mass |>
-  group_by(id) |>
-  mutate(n = n()) |> filter(n > 1) |> arrange(id) |> as.data.frame()
+# dry_mass |>
+#   group_by(id) |>
+#   mutate(n = n()) |> filter(n > 1) |> arrange(id) |> as.data.frame()
 
 # notes from Carmen
 #AGQ4632- dry mass = 0.0301
