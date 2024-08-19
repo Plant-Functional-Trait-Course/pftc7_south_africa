@@ -37,6 +37,7 @@ clean_dry_mass <- function(raw_dry_mass){
     tidylog::filter(!c(id == "HRW1244" & dry_mass_g == 0.0512)) |>
     tidylog::filter(!c(id == "HST1605" & dry_mass_g == 0.2456)) |>
     tidylog::filter(!c(id == "IKY8562" & dry_mass_g == 0.0108)) |>
+    tidylog::filter(!c(id == "HIT7668" & dry_mass_g == 0.0644)) |>
     distinct()
 
 }
