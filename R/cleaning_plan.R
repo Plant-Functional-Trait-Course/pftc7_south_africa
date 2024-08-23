@@ -15,22 +15,16 @@ cleaning_plan <- list(
   ),
 
   # clean leaf area
-  # tar_target(
-  #   name = leaf_area,
-  #   command = clean_leaf_area(raw_leaf_area)
-  # ),
+  tar_target(
+    name = leaf_area,
+    command = clean_leaf_area(raw_leaf_area)
+  ),
 
   # clean traits step 1: initial cleaning and fixing names
   tar_target(
     name = traits,
-    command = clean_traits_step1(raw_traits, tochange, heli_naming_system, dry_mass)
+    command = clean_traits_step1(raw_traits, name_trail, tochange, heli_naming_system, dry_mass, leaf_area)
   )
-
-  # # merge traits, mass and area
-  # tar_target(
-  #   name = traits,
-  #   command = clean_traits_step2(traits1, dry_mass, leaf_area)
-  # )
 
 
 )
