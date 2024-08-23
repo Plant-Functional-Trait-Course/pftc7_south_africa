@@ -2,59 +2,78 @@
 
 clean_leaf_area <- function(raw_leaf_area){
 
-  # check IDs (only 2 wrong)
+  # check IDs (only 4 wrong)
   # raw_leaf_area |>
-  #   anti_join(valid_codes, by = c("ID" = "hashcode"))
+  #   anti_join(valid_codes, by = c("id" = "hashcode"))
 
   raw_area <- raw_leaf_area |>
     clean_names() |>
     mutate(id = case_when(id == "mIWJ2357" ~ "IWJ2357",
                           id == "IMU9111I" ~ "IMU9111",
+                          id == "FFT9801" ~ "FFT9800",
+                          id == "Jan-96" ~ "JAN4796",
                           TRUE ~id)) |>
-    select(-x1, -dir) |>
-    # remove 211 duplicates
-    tidylog::distinct() |>
+    select(-x1) |>
     # remove duplicates with different area (scaned twice)
-    tidylog::filter(!c(id == "DHO7360" & leaf_area < 3)) |>
-    tidylog::filter(!c(id == "EHS0662" & leaf_area < 0.6)) |>
-    tidylog::filter(!c(id == "GHU6573" & leaf_area < 6.5)) |>
-    tidylog::filter(!c(id == "HHU5593" & leaf_area < 11)) |>
-    tidylog::filter(!c(id == "HVJ7082" & leaf_area < 18)) |>
+    tidylog::filter(!c(id == "FFT9800" & leaf_area < 12.8)) |>
     tidylog::filter(!c(id == "IMU9111" & leaf_area < 1.22)) |>
-    tidylog::filter(!c(id == "IVJ5024" & leaf_area > 4.49))
+    tidylog::filter(!c(id == "HIT7668" & leaf_area > 6)) |>
+    # remove rejected samples
+    tidylog::filter(!id %in% c("DNL5251", "DNQ6085")) |>
+    # 12 no data and no scan: AAH1730, AAJ0773, AAK2991, AAL3746, AAM1419, AAN6487, AAO9227, AAP5468, AAR5505, AAT1531, ABR7593, IZZ6892
+    filter(!id %in% c("AAH1730", "AAJ0773", "AAK2991", "AAL3746", "AAM1419", "AAN6487", "AAO9227", "AAP5468", "AAR5505", "AAT1531", "ABR7593", "IZZ6892", "ISE8213")) |>
+    # fix wrong IDs from Sean
+    tidylog::mutate(id = case_when(id == "AAA4313" ~ "IUA5525",
+                          id == "AAB1562" ~ "ITS7233",
+                          id == "AAC4898" ~ "IPV2198",
+                          id == "AAE1525" ~ "JBF7217",
+                          id == "AAG5074" ~ "GKO6816",
+                          id == "HIE9439" ~ "HII4755",
+                          id == "HIN5519" ~ "HIR2718",
+                          id == "HIP0774" ~ "HIT7668",
+                          id == "HIU1449" ~ "HIY2233",
+                          id == "HIW7459" ~ "HJA5576",
+                          id == "HIX6183" ~ "HJB1614",
+                          id == "HJF7356" ~ "HJJ3155",
+                          id == "HJK0237" ~ "HJO3994",
+                          id == "HJN5785" ~ "HJR9445",
+                          id == "HJS8517" ~ "HJW8540",
+                          id == "HKA4733" ~ "HKE9266",
+                          id == "HKB2288" ~ "HKF1799",
+                          id == "HKI0144" ~ "HKM0259",
+                          id == "HKJ2307" ~ "HKN0162",
+                          id == "HKL2135" ~ "HKP6998",
+                          id == "HKU4365" ~ "HKV1826",
+                          id == "HKZ5408" ~ "HKY3789",
+                          id == "HLB6513" ~ "HLF0616",
+                          id == "HLL5321" ~ "HLH7627",
+                          id == "HLO0768" ~ "HLS3698",
+                          id == "HLP4217" ~ "HLT0616",
+                          id == "HLR8378" ~ "HLV2827",
+                          id == "HND8304" ~ "HNH0136",
+                          id == "HNI7054" ~ "HNM6517",
+                          id == "JAM7375" ~ "ITW4599",
+                          TRUE ~ id))
 
 }
 
-
-# duplicates with same area (I assume can be removed)
-# raw_area |>
-#   group_by(id, n, leaf_area) |>
-#   mutate(n = n()) |>
-#   filter(n > 1) |>
-#   arrange(id)
-
+# ALL FIXED
 # duplicates with different area (need to find right one)
 # raw_area |>
 #   group_by(id) |>
 #   mutate(n = n()) |>
 #   filter(n > 1) |>
 #   arrange(id)
-#
-# 1 DHO7360     2     2.90
-# 2 DHO7360     2     6.34 -> probably correct
-# 3 EHS0662     2     0.528
-# 4 EHS0662     2     0.827 -> better, leaf more open
-# 5 GHU6573     2     6.34
-# 6 GHU6573     2     6.93 -> probably ok
-# 7 HHU5593     2    10.6
-# 8 HHU5593     2    22.9  -> probably ok
-# 9 HVJ7082     2    17.8
-# 10 HVJ7082     2    18.3  -> probably ok
-# 11 IMU9111     2     1.21
-# 12 IMU9111     2     1.25 -> probably ok
-# 13 IVJ5024     2     4.50
-# 14 IVJ5024     2     4.49 -> probably ok, no dust
 
+# id      leaf_area_nr leaf_area     n
+# <chr>          <dbl>     <dbl> <int>
+# 1 FFT9800            1     12.8      2
+# 2 FFT9800            1     12.7      2
+# 3 IMU9111            1      1.21     2
+# 4 IMU9111            1      1.25     2
+
+# very big leaves, is ok
+# raw_area |> filter(leaf_area > 100)
 
 # raw_area |>
 #   ggplot(aes(x = leaf_area)) +
