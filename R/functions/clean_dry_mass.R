@@ -18,7 +18,10 @@ clean_dry_mass <- function(raw_dry_mass){
     mutate(dry_mass_g = as.numeric(str_replace(dry_mass_g, ",", ".")),
            # Carmens comment: HBH6091- dry mass = 0.0922
            dry_mass_g = if_else(id == "HBH6091", 0.0922, dry_mass_g),
-           dry_mass_g = if_else(id == "IVS5393", NA_real_, dry_mass_g)) |>
+           dry_mass_g = if_else(id == "IVS5393", NA_real_, dry_mass_g),
+           dry_mass_g = if_else(id == "HIT7668", 0.0644, dry_mass_g),
+           dry_mass_g = if_else(id == "IAO7909", 0.0582, dry_mass_g),
+           dry_mass_g = if_else(id == "DCU2168", 0.0035, dry_mass_g)) |>
     # remark damage
     mutate(remarks = if_else(id == "IEU4695", "damaged leaf", remarks)) |>
     select(-check_scan, -scan_checked) |>
@@ -37,7 +40,6 @@ clean_dry_mass <- function(raw_dry_mass){
     tidylog::filter(!c(id == "HRW1244" & dry_mass_g == 0.0512)) |>
     tidylog::filter(!c(id == "HST1605" & dry_mass_g == 0.2456)) |>
     tidylog::filter(!c(id == "IKY8562" & dry_mass_g == 0.0108)) |>
-    tidylog::filter(!c(id == "HIT7668" & dry_mass_g == 0.0644)) |>
     distinct()
 
 }
