@@ -35,9 +35,9 @@ import_plan <- list(
   tar_target(
     name = traits_download,
     command =  get_file(node = "hk2cy",
-               file = "PFTC7_SA_raw_traits_2023_version2024.xlsx",
-               path = "raw_data",
-               remote_path = "raw_data/raw_trait_data"),
+                        file = "PFTC7_SA_raw_traits_2023_versionAug2024.xlsx",
+                        path = "raw_data",
+                        remote_path = "raw_data/raw_trait_data"),
     format = "file"
   ),
 
@@ -45,7 +45,7 @@ import_plan <- list(
   tar_target(
     name = dry_mass_download,
     command =  get_file(node = "hk2cy",
-                        file = "PFTC7_SA_raw_dry_mass_2023_version2024.csv",
+                        file = "PFTC7_SA_raw_dry_mass_2023_versionJuly2024.csv",
                         path = "raw_data",
                         remote_path = "raw_data/raw_trait_data"),
     format = "file"
@@ -55,7 +55,7 @@ import_plan <- list(
   tar_target(
     name = leaf_area_download,
     command =  get_file(node = "hk2cy",
-                        file = "PFTC7_SA_raw_leaf_area_2023.csv",
+                        file = "leaf_area_scans_25Jun2024.csv",
                         path = "raw_data",
                         remote_path = "raw_data/raw_trait_data"),
     format = "file"
