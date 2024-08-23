@@ -1,9 +1,12 @@
 # RangeX traits
 
+# check if this leaf comes through:
+# has area and mass AFS2562
 
 # import data
-raw_rangex <- read_excel(path = "raw_data/PFTC7_SA_raw_traits_2023.xlsx",
-                         sheet = "RangeX")
+raw_rangex <- read_excel(path = "raw_data/PFTC7_SA_raw_traits_2023_versionJuly2024.xlsx",
+                         sheet = "RangeX") |>
+  clean_names()
 
 # 442 match
 rx <- raw_rangex |>
