@@ -213,7 +213,7 @@ clean_traits_step1 <- function(raw_traits, name_trail, tochange, heli_naming_sys
   #   tidylog::anti_join(raw_rangex, by = "id") |>
   #   tidylog::anti_join(roots, by = c("id" = "barcode"))
 
-  # create dd: traits5 |> plus first 4 commands.
+  # create dd: traits6 |> plus first 4 commands.
 
 
   # in traits but have no mass, envelope not found. need to check if mass is on envelope: IYE4372, HUN5440
@@ -252,7 +252,7 @@ clean_traits_step1 <- function(raw_traits, name_trail, tochange, heli_naming_sys
 
 
   # merge dry mass and leaf area
-  traits <- traits5 |>
+  traits6 <- traits5 |>
     mutate(species = tolower(species)) |>
     # remove bulk nr because its wrong, has been fixed in dry mass
     select(-bulk_nr) |>
@@ -390,10 +390,9 @@ clean_traits_step1 <- function(raw_traits, name_trail, tochange, heli_naming_sys
     # 7 NAs for date, replace with 8, which is in the middle of the sampling campaign
     mutate(day_not_date = if_else(is.na(day_not_date), 8, day_not_date),
            date = ymd(paste0("2023-12-", day_not_date)))
-#   select(id, date, project, aspect, site_id, elevation_m_asl, plot_id, plant_id, species, veg_height_cm, rep_height_cm, wet_mass_g, dry_mass_g, leaf_thickness_mm)
 
   # flag data
-  traits |>
+  traits <- traits6 |>
     # remove bad data
     # lotononis lotononoides where leaves were wrongly sampled
     tidylog::filter(!id %in% c("DWI9620", "IDO6772", "DCI2655", "DCO3139")) |>
@@ -415,7 +414,7 @@ clean_traits_step1 <- function(raw_traits, name_trail, tochange, heli_naming_sys
                                     str_detect(remarks_dm, "damage|Damage|eaten") ~ "leaf damaged",
                                     id %in% c("DDY0804", "CUQ2187") ~ "leaf damaged",
                                     id %in% c("DHQ3323", "DIM6158", "HGH2408", "DFE2170", "DSI3658",
-                                              "EPI1411", "DTW0238", "IKV3000", "IDK9924", "EYL8181",
+                                              "EPI1411", "DTW0238", "IKV3000", "IDK9924",
                                               "IYN5083") ~ "missing petiole",
                                     id %in% c("IJQ3983", "DWI9620", "IDO6772", "DCI2655", "DCO3139") ~ "missing petiole and stipules",
                                     id %in% c("IIC0119", "IUX3982", "HZF7684", "CTN0733", "CTF6956",
@@ -423,13 +422,16 @@ clean_traits_step1 <- function(raw_traits, name_trail, tochange, heli_naming_sys
                                               "EGB4551", "HVR2599", "HYI2750", "HYM1283", "HZE2519",
                                               "HZI9086", "HZJ5499", "ICR9187", "HYX7739", "IAZ7307",
                                               "HYC9197", "EHK0364") ~ "missing stipules",
+                                    id %in% c("HUW9936") ~ "missing leaflets",
                                     id %in% c("DBZ6019", "DRW9068", "IOF7531") ~ "leaflets overlapping",
-                                    TRUE ~ NA_character_))
+                                    id %in% c("DMV5172") ~ "juvenile plant",
+                                    TRUE ~ NA_character_),
+           problem_flag = if_else(id == "EYL8181", "damage and missing petiole", problem_flag)) |>
+    select(id, date, project, aspect, site_id, elevation_m_asl, plot_id, plant_id, species, veg_height_cm, rep_height_cm, wet_mass_g, dry_mass_g, leaf_area_cm2, leaf_thickness_mm, sla_cm2_g, ldmc, missing_data_flag, problem_flag)
 
 
 }
 
-#write_csv(traits, "PFTC7_traits_cleanish_july24.csv")
 
 # oxalis depressa: IOJ6405, HYQ0079, IPL2355 is area calculated correctly? Bad scan and seem to have too low area for their mass
 
@@ -576,3 +578,4 @@ clean_traits_step1 <- function(raw_traits, name_trail, tochange, heli_naming_sys
 # IVS5393 wet mass is 0.0000! -> check envelope if not then make NA
 # IUW5407 very small: ok, similar to others
 # IWT4742 seems awfully tall for it's weight: ok similar to others
+
