@@ -2,9 +2,13 @@ name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iterat
 clean_community|function|e6edb670c6505dba|||||||||||||||
 clean_dry_mass|function|3b43a2e14cdbdea5|||||||||||||||
 clean_leaf_area|function|9eebafdd8d486efe|||||||||||||||
-clean_traits_step1|function|91efc1376786346e|||||||||||||||
+clean_traits_step1|function|780bcd9921d113bc|||||||||||||||
 cleaning_plan|object|4159461f00f5fbf4|||||||||||||||
-combined_plan|object|2ebaa671a4a5a2ed|||||||||||||||
+cnp_full_list|stem|31f15ee60a87d6e3|643b549f61f11cc5|004adab9c73241f8|1336840223||t19991.2766103846s|16a5c02b9900f24c|58129|rds|local|vector|||1.146||
+cnp_leaves|stem|ffcd566ace2762e3|07936a97771646d3|5e7cec8de45bc60f|940862467||t19991.27488707s|9903306e1685fb67|94|rds|local|vector|||0.803||
+cnp_trait_out|stem|ffcd566ace2762e3|98024970655b7071|b68786ca7ba991e9|-471047032||t19991.2766160017s|9903306e1685fb67|94|rds|local|vector|||0.248||
+cnp_traits|stem|976c5fe6a0825a4a|d06a6f4689dae547|25699dbac8468ace|1463616695||t19991.2766125812s|36f0892182858c69|27810|rds|local|vector|||0.077||
+combined_plan|object|9617ed7f0ed01bc0|||||||||||||||
 community|stem|bb6b6c6bc40d99da|57d6ee5dfcb42615|6b07aa90008cfbe1|-1340620855||t19851.4934460506s|7407341c49111fca|5774|rds|local|vector|||29.985||
 community_out|stem|6da90bd953acf919|0409a9d3b3ebefbc|ba50c6543f6be365|688211158||t19851.4934484239s|17e1813002340629|93|rds|local|vector|||0.197||
 correct_leaf_ID|function|4244efe04287b3fb|||||||||||||||
@@ -12,6 +16,8 @@ cover_download|stem|dc2b26072dbf517b|ad3a96475d87aa21|ef46db3751d8e999|-15190484
 dry_mass|stem|6e996db99ba7ff49|723c6e74180928d1|a20b9051fcf6cd29|-1029071627||t19956.3964835644s|424bb153dbf84ffb|42832|rds|local|vector|||0.237||
 dry_mass_download|stem|8ad122d9b4aacc5b|c8e5bd744193a44d|ef46db3751d8e999|525055156|raw_data/PFTC7_SA_raw_dry_mass_2023_versionJuly2024.csv|t19930.4245199146s|1eec4d9dbf821760|144184|file|local|vector|||6.077||
 extra_cover_download|stem|aa343b0c76cc8de4|c7e53b79eadb223e|ef46db3751d8e999|-1473672665|raw_data/Species_added_during_FT_sampling.xlsx|t19707.3687532852s|e9143b58fe73d9b3|11733|file|local|vector|||5.299||
+get_chem_trait_batch|function|d622ea7f2baeac3b|||||||||||||||
+get_list_chem_traits|function|dec4da707f3051de|||||||||||||||
 heli_name_changes_download|stem|ab970933a1778476|073fbf02f382d5ee|ef46db3751d8e999|1203329087|raw_data/Heli_name_changes.xlsx|t19708.483816466s|5431bea1f5aef2f6|9519|file|local|vector|||2.229||
 heli_naming_system|stem|d1789aa49d3ffde0|082eb44a7a6ca64c|8b1ba904ff73f02e|610260558||t19851.4143553813s|e69b513f5fd59ef6|206|rds|local|vector|||0.009||
 import_plan|object|94e494575f7e03c8|||||||||||||||
@@ -21,7 +27,7 @@ name_trail|stem|2c1207edfd5d97a2|7aba587b560c9bf2|43c32506bc7d9f37|-1274165068||
 name_trail_download|stem|c754e70a9fd2a432|ac5a38dc4cf1e933|ef46db3751d8e999|-1483524094|raw_data/std_names_editing.csv|t19707.3688206824s|0413932d8e91ced0|5612|file|local|vector|||2.598||
 new_heli_naming_system|function|7e98a0007e6db7a9|||||||||||||||
 new_heli_naming_system_download|stem|fdedba537557cdc2|34cf945a67f4fdc3|ef46db3751d8e999|-544789679|raw_data/New Helichrysum naming system.xlsx|t19851.4135796404s|0c29305fae76bc50|8565|file|local|vector|||4.666||
-output_plan|object|9296379d60076e18|||||||||||||||
+output_plan|object|0a80945de95c5017|||||||||||||||
 raw_cover|stem|f284154b0b6420b2|bbf0aa6cc5bf3c82|4c894bc01e940a46|1211840318||t19851.4143552205s|916a77854bfb5243|5402|rds|local|vector|||0.68||
 raw_dry_mass|stem|0f1201e88914b958|44330734afdf29b1|f0ffa2364bb262d7|52092165||t19930.4245244204s|1380ae9b0c8dbbb7|53419|rds|local|vector|||0.294||
 raw_extra|stem|a303023966aa65dd|37bd575cde7c5fed|62c9c1397b1bc854|516310303||t19851.4739846439s|a6faa98bfc54d022|1271|rds|local|vector|||0.01||
@@ -30,7 +36,7 @@ raw_leaf_area|stem|2096c4eaf39c7fd6|328038302f3a4092|b1dba8180f0e33cf|558998692|
 raw_traits|stem|70255eef799826a2|1a9710f46c9d350d|4bff9cbaf2c9ea0a|-228491364||t19958.3626762956s|b0951d91dedc3545|84318|rds|local|vector|||0.297|Expecting numeric in H2981  R2981C8 got F1. Expecting numeric in H2989  R2989C8 got F1. Expecting numeric in H3007  R3007C8 got F4. Expecting numeric in H3010  R3010C8 got F2. Expecting numeric in H3012  R3012C8 got F1. Expecting numeric in H3013  R3013C8 got F3. Expecting numeric in H3015  R3015C8 got F3. Expecting numeric in H3016  R3016C8 got F3. Expecting numeric in H3053  R3053C8 got F1. Expecting numeric in H3362  R3362C8 got F1. Expecting numeric in H3363  R3363C8 got F1. Expecting numeric in H3364  R3364C8 got F1. Expecting numeric in H3365  R3365C8 got F1. Expecting numeric in H3366  R3366C8 got F2. Expecting numeric in H3367  R3367C8 got F1. Expecting numeric in H3368  R3368C8 got F1. Expecting numeric in H3369  R3369C8 got F1. Expecting numeric in H3370  R3370C8 got F1. Expecting numeric in H3372  R3372C8 got F1. Expecting numeric in H3373  R3373C8 got F4. Expecting numeric in H3375  R3375C8 got F4. Expecting numeric in H3376  R3376C8 got F3. Expecting numeric in H3377  R3377C8 got F4. Expecting numeric in H3378  R3378C8 got F1. Expecting numeric in H3379  R3379C8 got F1. Expecting numeric in H3381  R3381C8 got F3. Expecting numeric in H3382  R3382C8 got F1. Expecting numeric in H3383  R3383C8 got F1. Expecting numeric in H3385  R3385C8 got F1. Expecting numeric in H3386  R3386C8 got F2. Expecting numeric in H3387  R3387C8 got F1. Expecting numeric in H3388  R3388C8 got F4. Expecting numeric in H3389  R3389C8 got F4. Expecting numeric in H3390  R3390C8 got F1. Expecting numeric in H3391  R3391C8 got F2. Expecting numeric in H3393  R3393C8 got F2. Expecting numeric in H3394  R3394C8 got F1. Expecting numeric in H3395  R3395C8 got F1. Expecting numeric in H3396  R3396C8 got F1. Expecting numeric in H3397  R3397C8 got F2. Expecting numeric in H3398  R3398C8 got F3. Expecting numeric in H3399  R3399C8 got F2. Expecting numeric in H3630  R36|
 save_csv|function|b20f69c1bf2766b4|||||||||||||||
 tochange|stem|5b65244197aa32af|cab1b41a1b946cb9|e48b8c273bf0b50b|665320817||t19851.4143472429s|c8cda3a0d78c66fb|406|rds|local|vector|||0.015||
-traits|stem|c49772c08995ae20|d97fe33328d04bea|1308aaa83e03a6ba|-1787925953||t19958.3901854351s|b45adadac8dc64ba|200278|rds|local|vector|||2.7|There were 4 warnings in mutate.The first warning wasℹ In argument veg_height_cm  as.numericstr_replaceveg_height_cm, ,,  ..Caused by warning NAs introduced by coercionℹ Run dplyrlast_dplyr_warnings to see the 3 remaining warnings.|
+traits|stem|ac354396eb61758c|d97fe33328d04bea|2060da72ae337751|-1787925953||t19958.5798559888s|46d01cf72cb5e472|131144|rds|local|vector|||2.707|There were 4 warnings in mutate.The first warning wasℹ In argument veg_height_cm  as.numericstr_replaceveg_height_cm, ,,  ..Caused by warning NAs introduced by coercionℹ Run dplyrlast_dplyr_warnings to see the 3 remaining warnings.|
 traits_download|stem|b357d59b709bdb47|cac52794894b5609|ef46db3751d8e999|-2000569092|raw_data/PFTC7_SA_raw_traits_2023_versionAug2024.xlsx|t19956.414535405s|ba09cd26fab065a6|796543|file|local|vector|||4.129||
-traits_out|stem|215ebb7c9080d60c|c7235f9a60e92928|6d2759c8a30e4cec|-1540995588||t19958.3901882971s|a3c4b57a6f0085ec|90|rds|local|vector|||0.235||
+traits_out|stem|215ebb7c9080d60c|c7235f9a60e92928|5cdf7c3057bffd26|-1540995588||t19958.5798587191s|a3c4b57a6f0085ec|90|rds|local|vector|||0.22||
 tranformation_plan|object|a59e942a5c0098b8|||||||||||||||

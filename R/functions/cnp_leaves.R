@@ -28,11 +28,13 @@ get_chem_trait_batch <- function(x, minDW, i = 1){
 get_list_chem_traits <- function(traits){
 
   wide_traits <- traits |>
-    filter(plot_id != 0) |>
-    select(id, day_not_date, site_id, elevation_m_asl, aspect, plot_id, plant_id, species,
-           dry_mass_total_g, remark, remarks_dm) |>
-    tidylog::filter(!is.na(dry_mass_total_g)) |>
-    tidylog::filter(!c(dry_mass_total_g == 0))
+    # remove missing and bad data
+    filter(is.na(missing_data_flag),
+           is.na(problem_flag),
+           # remove data not in the plots
+           plot_id != 0) |>
+    select(id, date, site_id, elevation_m_asl, aspect, plot_id, plant_id, species, dry_mass_g) |>
+    tidylog::filter(c(!dry_mass_g == 0))
 
   # Minimum dry mass needed for CNP analysis in g
   # 1.5 - 1.7 mg for CN + isotopes
@@ -42,24 +44,19 @@ get_list_chem_traits <- function(traits){
   # cnp analysis
   cnp_traits <- wide_traits |>
     # group by plot and species and arrange by mass
-    arrange(site_id, plot_id, aspect, species, -dry_mass_total_g) |>
+    arrange(site_id, plot_id, aspect, species, -dry_mass_g) |>
     group_by(site_id, plot_id, aspect, species) |>
     # get cumsum and
-    mutate(cum_mass = cumsum(dry_mass_total_g)) |>
-    mutate(batch_nr = get_chem_trait_batch(x = dry_mass_total_g,
+    mutate(cum_mass = cumsum(dry_mass_g)) |>
+    mutate(batch_nr = get_chem_trait_batch(x = dry_mass_g,
                                           minDW = minDW_cnp)) |>
     group_by(site_id, plot_id, aspect, species, batch_nr) |>
     mutate(chem_id = if_else(!is.na(batch_nr), str_c(id, collapse = "_"), NA_character_)) |>
-    select(id:species, dry_mass_total_g, cum_mass, batch_nr, chem_id, everything())
+    select(id:species, dry_mass_g, cum_mass, batch_nr, chem_id, everything())
 
 
 }
 
-# select 3 random samples per
-cnp_traits |>
-  ungroup() |>
-  group_by(site_id, aspect, species) |>
-  slice_sample(n = 3)
 
 
 
