@@ -243,12 +243,8 @@ clean_traits_step1 <- function(raw_traits, name_trail, tochange, heli_naming_sys
   # dd |>
   #   anti_join(leaf_area1, by = "id") |> arrange(id) |> print(n = Inf)
 
-  # cannot find scan: CYU7541, CZH2465, CZL2897, DFL2326, DFX2312, DNF7924, DSO1082, DTG6508, DTG6508, HHH1385, HJA5576, HSM2419, ILA4655, IPP6262, IVK1063 -> ask all
-
-  # bad scan: DRN5095, EHJ1141, EWD0224, HRL1615, HSI4571, IYN5083 -> try to get area from shiny app
-  # white leaf: END0045, EOT7554 -> ask group or try area with shiny app
-
-  # scan but no area data: EAA3997, EIS1610, ENV6286, ETV8249, EVV1051, FAG5025, HNZ8136 (needs removal of envelope), HOY7210 (needs removal of envelope), EOT7554 -> ask group
+  # cannot find scan: CYU7541, CZH2465, CZL2897, DFL2326, DFX2312, DNF7924, DSO1082, DTG6508, HHH1385, HJA5576, HSM2419, ILA4655, IPP6262, IVK1063, IYN5083 -> nobody can find them, no area
+  # bad scan: EWD0224 bad scan, no area
 
 
   # merge dry mass and leaf area
@@ -383,9 +379,6 @@ clean_traits_step1 <- function(raw_traits, name_trail, tochange, heli_naming_sys
     # remove 13 leaves where dry mass > wet mass and cannot be fixed
     tidylog::filter((ldmc <= 1) %>% replace_na(TRUE)) |>
 
-      # order columns
-      # select(id:rep_height_cm, wet_mass_g, dry_mass_g, leaf_area_cm2, leaf_thickness_mm, wet_sla_cm2_g, sla_cm2_g, ldmc, everything()) |>
-
     # Make data pretty
     # 7 NAs for date, replace with 8, which is in the middle of the sampling campaign
     mutate(day_not_date = if_else(is.na(day_not_date), 8, day_not_date),
@@ -427,10 +420,24 @@ clean_traits_step1 <- function(raw_traits, name_trail, tochange, heli_naming_sys
                                     id %in% c("DMV5172") ~ "juvenile plant",
                                     TRUE ~ NA_character_),
            problem_flag = if_else(id == "EYL8181", "damage and missing petiole", problem_flag)) |>
-    select(id, date, project, aspect, site_id, elevation_m_asl, plot_id, plant_id, species, veg_height_cm, rep_height_cm, wet_mass_g, dry_mass_g, leaf_area_cm2, leaf_thickness_mm, sla_cm2_g, ldmc, missing_data_flag, problem_flag)
-
+    select(id, date, project, aspect, site_id, elevation_m_asl, plot_id, plant_id, species, veg_height_cm, rep_height_cm, wet_mass_g, dry_mass_g, leaf_area_cm2, leaf_thickness_mm, sla_cm2_g, ldmc, missing_data_flag, problem_flag) |>
+    tidylog::pivot_longer(cols = c(veg_height_cm:ldmc), names_to = "traits", values_to = "value") |>
+    filter(!is.na(value)) |>
+    select(id:species, traits, value, problem_flag) |>
+    # problems relevant for all traits except heights
+    mutate(problem_flag = case_when(problem_flag %in% c("leaf damaged", "damage and missing petiole", "missing petiole", "missing stipules", "missing petiole and stipules", "missing leaflets") & traits %in% c("veg_height_cm", "rep_height_cm") ~ NA_character_,
+           TRUE ~ problem_flag),
+           # problem relevant for area and sla
+           problem_flag = case_when(problem_flag == "leaflets overlapping" & !traits %in% c("leaf_area_cm2", "sla_cm2_g") ~ NA_character_,
+                                    TRUE ~ problem_flag))
 
 }
+
+
+# While checking missing petioles and leaflets, a couple of issues with scans came up. Can the "leaf area group" please check if the following corrections have been done:
+# Aster perfoliatus: DJK7780 leaf ripped where stem goes through leaf. May need colouring in -> has this been corrected?
+# Senecio glaberrimus: Some stem included; must be painted out: CZI1643, DFS2483, DGH7570, DNT4004, ECI0999, GDB2914, GDQ5190, GDU1704, GEC5870, GEG4663, GEV6124, GFD2773, GFG4723, GFH4906, GJB2936, GKC1048, HHY6277, HOR3154, INZ5169. Has this been done?
+
 
 
 # oxalis depressa: IOJ6405, HYQ0079, IPL2355 is area calculated correctly? Bad scan and seem to have too low area for their mass
