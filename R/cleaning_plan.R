@@ -17,7 +17,7 @@ cleaning_plan <- list(
   # clean leaf area
   tar_target(
     name = leaf_area,
-    command = clean_leaf_area(raw_leaf_area)
+    command = clean_leaf_area(raw_leaf_area, raw_leaf_area2)
   ),
 
   # clean traits step 1: initial cleaning and fixing names

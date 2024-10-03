@@ -61,6 +61,15 @@ import_plan <- list(
     format = "file"
   ),
 
+  tar_target(
+    name = leaf_area2_download,
+    command =  get_file(node = "hk2cy",
+                        file = "leaf_area_scans_01Oct2024.csv",
+                        path = "raw_data",
+                        remote_path = "raw_data/raw_trait_data"),
+    format = "file"
+  ),
+
   # download table containing the leafID's of the records which need name changes
   tar_target(
     name = heli_name_changes_download,
@@ -138,6 +147,11 @@ import_plan <- list(
   tar_target(
     name = raw_leaf_area,
     command = read_csv(file = leaf_area_download)
+  ),
+
+  tar_target(
+    name = raw_leaf_area2,
+    command = read_csv(file = leaf_area2_download)
   )
 
 )

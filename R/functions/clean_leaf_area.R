@@ -1,6 +1,6 @@
 # CLEAN LEAF AREA
 
-clean_leaf_area <- function(raw_leaf_area){
+clean_leaf_area <- function(raw_leaf_area, raw_leaf_area2){
 
   # check IDs (only 4 wrong)
   # raw_leaf_area |>
@@ -53,7 +53,12 @@ clean_leaf_area <- function(raw_leaf_area){
                           id == "HND8304" ~ "HNH0136",
                           id == "HNI7054" ~ "HNM6517",
                           id == "JAM7375" ~ "ITW4599",
-                          TRUE ~ id))
+                          TRUE ~ id)) |>
+    # recoloured scans (see info below)
+    # EWD0224 does not work for scanning, no area
+    bind_rows(raw_leaf_area2 |>
+                # filter only the once that have changed
+                filter(id %in% c("ALG9934", "DRN5095", "EAA3997", "EHJ1141", "EIS1610", "END0045", "ENV6286", "EOT7554", "ETV8249", "EVV1051", "FAG5025", "HNZ8136", "HOY7210", "HRL1615", "HSI4571", "IWJ2357", "JAN4796")))
 
 }
 
@@ -78,3 +83,24 @@ clean_leaf_area <- function(raw_leaf_area){
 # raw_area |>
 #   ggplot(aes(x = leaf_area)) +
 #   geom_histogram()
+
+
+# recolouring of scans by Ludwig
+# ALG9934 parts slightly too long for scan
+# DRN5095 Contrast adjusted
+# EAA3997 worked
+# EHJ1141 Contrast adjusted
+# EIS1610 Contrast adjusted
+# END0045 Colored adjusted
+# ENV6286 rotated, envelope removed
+# EOT7554 colored
+# ETV8249 removed envelope
+# EVV1051 colored
+# EWD0224 discarded, did not work
+# FAG5025 worked
+# HNZ8136 removed envelope
+# HOY7210 removed envelope
+# HRL1615 Contrast adjusted
+# HSI4571 Contrast adjusted
+# IWJ2357 worked
+# JAN4796 worked
