@@ -1,10 +1,14 @@
 # CLEAN LEAF AREA
 
-clean_leaf_area <- function(raw_leaf_area, raw_leaf_area2){
+clean_leaf_area <- function(raw_leaf_area, raw_leaf_area2, raw_leaf_area3){
 
   # check IDs (only 4 wrong)
+  # valid_codes <- PFTCFunctions::get_PFTC_envelope_codes(seed = 202312)
   # raw_leaf_area |>
   #   anti_join(valid_codes, by = c("id" = "hashcode"))
+
+  # raw_leaf_area3 |>
+  #   anti_join(valid_codes, by = c("sample" = "hashcode"))
 
   raw_area <- raw_leaf_area |>
     clean_names() |>
@@ -59,6 +63,16 @@ clean_leaf_area <- function(raw_leaf_area, raw_leaf_area2){
     bind_rows(raw_leaf_area2 |>
                 # filter only the once that have changed
                 filter(id %in% c("ALG9934", "DRN5095", "EAA3997", "EHJ1141", "EIS1610", "END0045", "ENV6286", "EOT7554", "ETV8249", "EVV1051", "FAG5025", "HNZ8136", "HOY7210", "HRL1615", "HSI4571", "IWJ2357", "JAN4796")))
+
+  raw_area_new <- raw_leaf_area3 |>
+    rename(id = sample, leaf_area_new = total.leaf.area)
+
+  raw_area <- raw_area |>
+    tidylog::left_join(raw_area_new, by = "id") |>
+    mutate(leaf_area = if_else(!is.na(leaf_area_new), leaf_area_new, leaf_area)) |>
+    select(-leaf_area_new)
+
+
 
 }
 
