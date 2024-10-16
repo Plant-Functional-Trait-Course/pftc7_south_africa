@@ -1,9 +1,17 @@
 # RangeX traits
 
+# check if this leaf comes through:
+# has area and mass AFS2562
 
 # import data
-raw_rangex <- read_excel(path = "raw_data/PFTC7_SA_raw_traits_2023.xlsx",
-                         sheet = "RangeX")
+raw_rangex <- read_excel(path = "raw_data/PFTC7_SA_raw_traits_2023_versionJuly2024.xlsx",
+                         sheet = "RangeX") |>
+  clean_names()
+
+# 442 match
+rx <- raw_rangex |>
+  clean_names() |>
+  tidylog::inner_join(not_matching_dm, by = "id")
 
 meta <- read_csv("raw_data/rangeX_meta_treat.csv") |>
   filter(country == "south_africa") |>
@@ -83,6 +91,8 @@ trait <- raw_rangex |>
 
   select(id:rep_height_cm, wet_mass_g, leaf_area_cm2, leaf_thickness_mm, wet_sla_cm2_g, everything())
 
+# bulk nr larger than nr of pieces
+# AHS4588: The original bulk number registered was 5, but only 3 leaves were scanned. And then, for the dry weight it was noted that only 2 leaves remained. This one's kind of a mess.
 
 comm <- community_join |>
   distinct() |>
