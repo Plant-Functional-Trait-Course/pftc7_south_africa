@@ -9,6 +9,13 @@ output_plan <- list(
                        name = "community_2023")
   ),
 
+  # community structure
+  tar_target(
+    name = comm_structure_out,
+    command = save_csv(file = comm_structure,
+                       name = "community_structure_2023")
+  ),
+
   tar_target(
     name = traits_out,
     command = save_csv(file = traits,

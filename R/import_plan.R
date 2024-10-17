@@ -139,6 +139,14 @@ import_plan <- list(
     command = read_csv(file = name_trail_download)
   ),
 
+  # comm structure
+  tar_target(
+    name = raw_structure,
+    command = read_excel(path = cover_download,
+                         sheet = "plotlevel abiotic",
+                         col_names = FALSE)
+  ),
+
   # import raw traits
   tar_target(
     name = raw_traits,
