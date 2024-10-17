@@ -429,7 +429,8 @@ clean_traits_step1 <- function(raw_traits, name_trail, tochange, heli_naming_sys
            TRUE ~ problem_flag),
            # problem relevant for area and sla
            problem_flag = case_when(problem_flag == "leaflets overlapping" & !traits %in% c("leaf_area_cm2", "sla_cm2_g") ~ NA_character_,
-                                    TRUE ~ problem_flag))
+                                    TRUE ~ problem_flag)) |>
+    tidylog::distinct()
 
 }
 
