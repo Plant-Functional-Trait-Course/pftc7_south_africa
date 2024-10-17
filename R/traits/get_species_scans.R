@@ -2,6 +2,75 @@
 library(googledrive)
 library(googlesheets4)
 library(tidyverse)
+library(remotes)
+library(osfr)
+library(dataDownloader)
+
+#get most recent trait data
+FT <- read.csv("clean_data\\PFTC7_SA_clean_traits_19Apr2024.csv", row.names = 1)
+
+#species names that we need to check scans for
+spnames <- read.csv("clean_data\\PFTC7_SA_clean_community_19Apr2024.csv", col.names = c("name", "problems")) |>
+  filter(problems == "flag") |>
+  select(name)
+
+spnames <- spnames$name[10:17]
+
+#get the filenames in each subfolder of the raw_scans folder
+#put the filenames in each subfolder in a list
+#subfolders in the raw scans folder
+subs <- c("6", "7", "8", "9", "10", "11", "13", "14", "15")
+remote_file_list <- vector(mode = "list", length = length(subs))
+names(remote_file_list) <- subs
+
+for(s in 1:length(subs)) {
+  #create the remote path
+  remote_path = paste0("raw_data\\raw_scans\\", subs[s])
+
+  #list the files in remote_path
+  all_scans_in_folder <- osf_ls_files(x = osf_retrieve_node("hk2cy"), path = remote_path, type = "file", n_max = Inf)
+
+  remote_file_list[[s]] <- all_scans_in_folder
+} #this takes a while to run
+
+
+for(i in 1:length(spnames)) {
+#get id's corresponding to this species name
+idlist <- FT |>
+  filter(species %in% spnames[i] ) |>
+  select(id) |>
+  distinct()
+
+#create the filenames we are looking for
+scan_names <- paste0(idlist$id, ".jpeg")
+
+#subfolders in the raw scans folder
+subs <- c("6", "7", "8", "9", "10", "11", "13", "14", "15")
+
+for(n in 1:length(scan_names)) {
+  one_scan <- scan_names[n]
+
+  for(s in 1:length(subs)) {
+
+    remote_files_sub <- remote_file_list[[s]]
+
+    if(one_scan %in% remote_file_list[[s]]$name) { #check if the file is in this subfolder
+
+      scan_to_get <- remote_files_sub |> #if it is there, download the scan
+        filter(name == one_scan)
+
+      if(dir.exists(paste0("scans\\", spnames[i], "\\")) == FALSE) {
+      dir.create(paste0("scans\\", spnames[i], "\\"))}
+
+      osf_download(x = scan_to_get, path = paste0("scans\\", spnames[i], "\\"), conflicts = "skip")
+
+      # Break out of the inner loop if the scan is downloaded
+      break
+      }
+    }}}
+
+##Old code do not run ####
+
 
 # get current trait data
 
