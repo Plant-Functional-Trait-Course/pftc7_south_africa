@@ -8,8 +8,6 @@ clean_biomass <- function(raw_biomass){
            biomass_g = bag_biomass_g - bag_weight_g,
            functional_group = if_else(woody_herbaceous_not_indicated == "Woody", "woody", "herbs")) |>
     select(aspect, site_id, plot_id, biomass_g, functional_group)
-    # group_by(aspect, site_id, plot_id, functional_group) |>
-    # mutate(n = n()) |> filter(n > 1)
 
 }
 
