@@ -87,6 +87,22 @@ sitelevel_stats <- comm |>
   distinct(species) |>
   summarise(nsp = n())
 
+
+#Species richness per site per aspect
+comm |>
+  group_by(site_id, aspect) |>
+  distinct(species) |>
+  summarise(nsp = n())
+
+#mean species richness per site
+mean_sprich_per_site <- comm |>
+  group_by(site_id, aspect, plot_id) |>
+  distinct(species) |>
+  summarise(nsp = n()) |>
+  ungroup() |>
+  group_by(site_id) |>
+  summarise(mean_sprichness = mean(nsp))
+
 #species richness per plot
 plotlevel_stats <- comm |>
                     group_by(plotref) |>
