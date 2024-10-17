@@ -1,14 +1,18 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
+biomass|stem|d1aebdac6d7f4b2f|fefb95e0d1d30254|68463697b1ad2ca5|-1956547608||t20013.5165214826s|3832a5c02985f10f|598|rds|local|vector|||0.085||
+biomass_download|stem|6b0bb335ea06df87|ed2179d614dc7ba6|2c530c1562a7fbd1|627746585|raw_data/Biomass_data_18Jan2024_forsharing.xlsx|t20013.5037270335s|c92195e46bcbfcc5|15258|file|local|vector|||6.22||
+biomass_out|stem|bf09083c4a7b309e|449332eccbc8b493|f60ef46534c08a04|-1991712897||t20013.5180224132s|87acf94f6e8bd357|91|rds|local|vector|||0.129||
+clean_biomass|function|b7bc21acf1e77fa1|||||||||||||||
 clean_community|function|4241bb05b00063ae|||||||||||||||
 clean_dry_mass|function|4fb55680492fd936|||||||||||||||
 clean_leaf_area|function|53dff0d99add60ae|||||||||||||||
 clean_traits_step1|function|a4652749015d8fc8|||||||||||||||
-cleaning_plan|object|f6ccdbe13b1939ff|||||||||||||||
+cleaning_plan|object|c43746d713433182|||||||||||||||
 cnp_full_list|stem|94941a637d73d16f|b8d59101bc846d73|44c7e99d44198d94|-1983006526||t20012.2593380234s|08aad75802aaa705|59151|rds|local|vector|||1.006||
 cnp_leaves|stem|ffcd566ace2762e3|07936a97771646d3|5e7cec8de45bc60f|940862467||t19991.27488707s|9903306e1685fb67|94|rds|local|vector|||0.803||
-cnp_trait_out|stem|d2335de574745457|67e144bb65817f84|aac5b02b8190b0c9|814063695||t19999.4087444624s|e441caf5cebd5545|94|rds|local|vector|||0.029||
+cnp_trait_out|stem|d2335de574745457|67e144bb65817f84|aac5b02b8190b0c9|814063695||t20013.5180237036s|e441caf5cebd5545|94|rds|local|vector|||0.094||
 cnp_traits|stem|e154255db5a45ffe|6ee6c5edd036370e|6e82c779e3593a82|439210431||t19999.4087440845s|69eb8eef0cfaf8a3|28079|rds|local|vector|||0.066||
-combined_plan|object|c7607f502b75b044|||||||||||||||
+combined_plan|object|99f2853595e3d5d4|||||||||||||||
 community|stem|ce42ca9f54d1c18e|ed906ed70beafed6|98ab52b4661884bd|-522211339||t19999.3252965456s|9465244b721946d1|5774|rds|local|vector|||30.264||
 community_out|stem|c7dae208131818a8|9bbfc29c5100060f|ea68c6a5788893d3|1520484244||t19999.325320913s|7397575560806503|93|rds|local|vector|||0.03||
 correct_leaf_ID|function|b308a9d2f8d6f87c|||||||||||||||
@@ -20,7 +24,7 @@ get_chem_trait_batch|function|59c52ea84a34b2fe|||||||||||||||
 get_list_chem_traits|function|e93bdc0b09608dd0|||||||||||||||
 heli_name_changes_download|stem|a28346681cbd5112|3cbd06264b8308d6|2c530c1562a7fbd1|588937950|raw_data/Heli_name_changes.xlsx|t19708.483816466s|70152a1cf7f65645|9519|file|local|vector|||2.856||
 heli_naming_system|stem|a159aac3ef1098f1|548a77dace50c5e6|13c461d14e1fa400|-745049662||t19999.3249147109s|2afa517069eae5bf|206|rds|local|vector|||0.013||
-import_plan|object|f9525453cf860a33|||||||||||||||
+import_plan|object|71ce97e017dd1494|||||||||||||||
 leaf_area|stem|cc03a5a24823b482|b3da67ac8c17961a|4c4603ac1c594a67|-1139001930||t20012.2592734232s|58afd36b304c70b6|35177|rds|local|vector|||0.27||
 leaf_area_download|stem|33c89317460fdf13|629802e757b69d99|2c530c1562a7fbd1|476196079|raw_data/leaf_area_scans_25Jun2024.csv|t19899.3075930046s|a7e9598370840195|93832|file|local|vector|||3.484||
 leaf_area2_download|stem|69745b95f208fc70|73b3dc6cbd6b25df|2c530c1562a7fbd1|667559281|raw_data/leaf_area_scans_01Oct2024.csv|t19999.3249144061s|3e50ba191ff405dc|62578|file|local|vector|||4.825||
@@ -29,7 +33,8 @@ name_trail|stem|c05be4e68e6f3380|9333ade470ec164e|486302945a254319|1037313943||t
 name_trail_download|stem|a34835ce490adff1|2cbdea3d76b3aeaa|2c530c1562a7fbd1|1713762943|raw_data/std_names_editing.csv|t19707.3688206824s|b6c5d45ba71254fa|5612|file|local|vector|||2.254||
 new_heli_naming_system|function|89296c01e99ca563|||||||||||||||
 new_heli_naming_system_download|stem|4103b2fd3f184c4a|2249b67f3de7e2ae|2c530c1562a7fbd1|-283592760|raw_data/New Helichrysum naming system.xlsx|t19851.4135796404s|80192d0b402e4e2b|8565|file|local|vector|||4.977||
-output_plan|object|3c1323c19c24230b|||||||||||||||
+output_plan|object|8963f0425422df3c|||||||||||||||
+raw_biomass|stem|601db135ecf3d3c1|122ff8c87542ba47|2c0dfd8522197ae0|-642675418||t20013.5055608101s|c010b12d6c4d2de2|1072|rds|local|vector|||0.015||
 raw_cover|stem|f7988ad7be7bb522|1b3f79b6ef53e8fe|e1d148970f0a78f8|-208359141||t19999.3249342213s|ee63d6f13f5ae181|5402|rds|local|vector|||0.677||
 raw_dry_mass|stem|6ef89dca0d5ef22f|60e23468abea1b14|5bac6c51b790e26a|1173413247||t19999.3249193397s|0c3193c1986106b5|53419|rds|local|vector|||0.367||
 raw_extra|stem|bbaa54c8ba91361e|24ef9b0a8f43c13b|56d37335367bbe25|-323828502||t19999.3249201657s|230493205a60218d|1272|rds|local|vector|||0.01||

@@ -24,6 +24,12 @@ cleaning_plan <- list(
   tar_target(
     name = traits,
     command = clean_traits_step1(raw_traits, name_trail, tochange, heli_naming_system, dry_mass, leaf_area)
+  ),
+
+  # clean biomass
+  tar_target(
+    name = biomass,
+    command = clean_biomass(raw_biomass)
   )
 
 

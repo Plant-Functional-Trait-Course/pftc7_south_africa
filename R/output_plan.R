@@ -38,7 +38,16 @@ output_plan <- list(
     name = cnp_trait_out,
     command = save_csv(file = cnp_traits,
                        name = "cnp_traits_2023")
+  ),
+
+  # save file
+  tar_target(
+    name = biomass_out,
+    command = save_csv(file = biomass,
+                       name = "biomass_2023")
   )
+
+
 
 )
 
