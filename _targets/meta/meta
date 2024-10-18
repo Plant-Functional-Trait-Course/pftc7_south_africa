@@ -5,14 +5,14 @@ biomass_out|stem|bf09083c4a7b309e|449332eccbc8b493|f60ef46534c08a04|-1991712897|
 clean_biomass|function|b7bc21acf1e77fa1|||||||||||||||
 clean_comm_structure|function|a23480e4918556cc|||||||||||||||
 clean_community|function|4241bb05b00063ae|||||||||||||||
-clean_dry_mass|function|4fb55680492fd936|||||||||||||||
+clean_dry_mass|function|471a227923810b5d|||||||||||||||
 clean_leaf_area|function|c107b40866a4effc|||||||||||||||
 clean_traits_step1|function|a4652749015d8fc8|||||||||||||||
 cleaning_plan|object|4529eb8cd33fe3a9|||||||||||||||
-cnp_full_list|stem|ea17dac157a4fb50|b8d59101bc846d73|8dc1cbf34be4862e|-1983006526||t20014.1970922795s|8019b35df4f1114e|59128|rds|local|vector|||0.638||
+cnp_full_list|stem|0e1a4cef6fa0ba33|b8d59101bc846d73|2224b66dc3da2bba|-1983006526||t20014.2140977984s|00c979708a803eb7|59113|rds|local|vector|||0.627||
 cnp_leaves|stem|ffcd566ace2762e3|07936a97771646d3|5e7cec8de45bc60f|940862467||t19991.27488707s|9903306e1685fb67|94|rds|local|vector|||0.803||
 cnp_trait_out|stem|d2335de574745457|67e144bb65817f84|d871aaedfa95d9c7|814063695||t20013.5948107837s|e441caf5cebd5545|94|rds|local|vector|||0.189||
-cnp_traits|stem|b80e4538932c7070|6ee6c5edd036370e|484d4934568b7da8|439210431||t20013.5948084697s|828a7a2dcc6482d0|28088|rds|local|vector|||0.16||
+cnp_traits|stem|b80e4538932c7070|6ee6c5edd036370e|f327cbeaad6eb8d3|439210431||t20014.2141024644s|828a7a2dcc6482d0|28088|rds|local|vector|||0.111||
 combined_plan|object|702b1c023ee8076f|||||||||||||||
 comm_structure|stem|3bbd6301d67c4a86|dd4a53d3d27240d6|0aa05a427fa37a81|2009115245||t20014.1970097646s|c421b2b52c4cb972|1062|rds|local|vector|||0.16||
 comm_structure_out|stem|baae1072e484399c|06798a0dd5f9ccc7|356ca5bcc00254bd|-1968280966||t20014.1970331985s|4d4a95e0c03ab6de|103|rds|local|vector|||0.333||
@@ -20,7 +20,7 @@ community|stem|ce42ca9f54d1c18e|ed906ed70beafed6|98ab52b4661884bd|-522211339||t1
 community_out|stem|c7dae208131818a8|9bbfc29c5100060f|ea68c6a5788893d3|1520484244||t19999.325320913s|7397575560806503|93|rds|local|vector|||0.03||
 correct_leaf_ID|function|b308a9d2f8d6f87c|||||||||||||||
 cover_download|stem|767926778aaf1de5|40606d17ef3b6905|2c530c1562a7fbd1|1394166795|raw_data/Data entry 13Dec.xlsx|t19707.3685177743s|88b18772a2536957|45989|file|local|vector|||2.324||
-dry_mass|stem|1b6d8afe1b836b5d|4fcb89080ea15384|e9d9676aac73248c|-560100802||t19999.3249451892s|77e54acac6981eb6|42832|rds|local|vector|||0.171||
+dry_mass|stem|035c68cb87330760|4fcb89080ea15384|858960f30b57f212|-560100802||t20014.2140534694s|368ddf942f14591e|42830|rds|local|vector|||0.288||
 dry_mass_download|stem|c6642ce6cfda53ae|3f368028c060b5f5|2c530c1562a7fbd1|954536336|raw_data/PFTC7_SA_raw_dry_mass_2023_versionJuly2024.csv|t19930.4245199146s|a71a9702e86422d3|144184|file|local|vector|||2.555||
 extra_cover_download|stem|daf61eb51a928a26|798322eb74a159da|2c530c1562a7fbd1|-1528225194|raw_data/Species_added_during_FT_sampling.xlsx|t19707.3687532852s|3ca8b50514e8c9be|11733|file|local|vector|||2.301||
 get_chem_trait_batch|function|59c52ea84a34b2fe|||||||||||||||
@@ -49,7 +49,7 @@ raw_structure|stem|fdee0c21616ec2ad|de37f863180e1701|e1d148970f0a78f8|-717993411
 raw_traits|stem|7d4c442f52aaed3a|dd7057d5571c6d79|52b6f68540d83e5d|740529433||t19999.3249262613s|dd608e485d408aa4|84318|rds|local|vector|||0.214|Expecting numeric in H2981  R2981C8 got F1. Expecting numeric in H2989  R2989C8 got F1. Expecting numeric in H3007  R3007C8 got F4. Expecting numeric in H3010  R3010C8 got F2. Expecting numeric in H3012  R3012C8 got F1. Expecting numeric in H3013  R3013C8 got F3. Expecting numeric in H3015  R3015C8 got F3. Expecting numeric in H3016  R3016C8 got F3. Expecting numeric in H3053  R3053C8 got F1. Expecting numeric in H3362  R3362C8 got F1. Expecting numeric in H3363  R3363C8 got F1. Expecting numeric in H3364  R3364C8 got F1. Expecting numeric in H3365  R3365C8 got F1. Expecting numeric in H3366  R3366C8 got F2. Expecting numeric in H3367  R3367C8 got F1. Expecting numeric in H3368  R3368C8 got F1. Expecting numeric in H3369  R3369C8 got F1. Expecting numeric in H3370  R3370C8 got F1. Expecting numeric in H3372  R3372C8 got F1. Expecting numeric in H3373  R3373C8 got F4. Expecting numeric in H3375  R3375C8 got F4. Expecting numeric in H3376  R3376C8 got F3. Expecting numeric in H3377  R3377C8 got F4. Expecting numeric in H3378  R3378C8 got F1. Expecting numeric in H3379  R3379C8 got F1. Expecting numeric in H3381  R3381C8 got F3. Expecting numeric in H3382  R3382C8 got F1. Expecting numeric in H3383  R3383C8 got F1. Expecting numeric in H3385  R3385C8 got F1. Expecting numeric in H3386  R3386C8 got F2. Expecting numeric in H3387  R3387C8 got F1. Expecting numeric in H3388  R3388C8 got F4. Expecting numeric in H3389  R3389C8 got F4. Expecting numeric in H3390  R3390C8 got F1. Expecting numeric in H3391  R3391C8 got F2. Expecting numeric in H3393  R3393C8 got F2. Expecting numeric in H3394  R3394C8 got F1. Expecting numeric in H3395  R3395C8 got F1. Expecting numeric in H3396  R3396C8 got F1. Expecting numeric in H3397  R3397C8 got F2. Expecting numeric in H3398  R3398C8 got F3. Expecting numeric in H3399  R3399C8 got F2. Expecting numeric in H3630  R36|
 save_csv|function|68ccefdb06b3b37e|||||||||||||||
 tochange|stem|3908f95b5024e6da|4cfb2ca7dc581427|5addfdd13a0f5324|570598348||t19999.324914863s|a5a9b98a23c7fa1a|407|rds|local|vector|||0.007||
-traits|stem|d4c6e71535890858|e92604faca5c070f|00c8141346f8c66e|-223241305||t20014.1970846196s|8367c58bfd67be0e|169479|rds|local|vector|||4.313|There were 4 warnings in mutate.The first warning wasℹ In argument veg_height_cm  as.numericstr_replaceveg_height_cm, ,,  ..Caused by warning NAs introduced by coercionℹ Run dplyrlast_dplyr_warnings to see the 3 remaining warnings.|
+traits|stem|1326f2e8ac371c05|e92604faca5c070f|0c610e94e0b2cdad|-223241305||t20014.2140902548s|c2745ac8ffd5790a|169443|rds|local|vector|||3.032|There were 4 warnings in mutate.The first warning wasℹ In argument veg_height_cm  as.numericstr_replaceveg_height_cm, ,,  ..Caused by warning NAs introduced by coercionℹ Run dplyrlast_dplyr_warnings to see the 3 remaining warnings.|
 traits_download|stem|b7dd2538e8a3902c|0209ccc98b4e1c37|2c530c1562a7fbd1|-581491708|raw_data/PFTC7_SA_raw_traits_2023_versionAug2024.xlsx|t19956.414535405s|db2a6f714d24dc58|796543|file|local|vector|||3.483||
-traits_out|stem|7ba4720677866e23|143babd31dd990e7|8b9ca0bd4273f33e|982068835||t20014.197093163s|ba51273727d9db07|90|rds|local|vector|||0.069||
+traits_out|stem|7ba4720677866e23|143babd31dd990e7|4cf0ed5633593abf|982068835||t20014.2141010083s|ba51273727d9db07|90|rds|local|vector|||0.269||
 tranformation_plan|object|a59e942a5c0098b8|||||||||||||||

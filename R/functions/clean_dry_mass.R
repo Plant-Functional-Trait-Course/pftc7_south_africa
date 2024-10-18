@@ -21,7 +21,10 @@ clean_dry_mass <- function(raw_dry_mass){
            dry_mass_g = if_else(id == "IVS5393", NA_real_, dry_mass_g),
            dry_mass_g = if_else(id == "HIT7668", 0.0644, dry_mass_g),
            dry_mass_g = if_else(id == "IAO7909", 0.0582, dry_mass_g),
-           dry_mass_g = if_else(id == "DCU2168", 0.0035, dry_mass_g)) |>
+           dry_mass_g = if_else(id == "DCU2168", 0.0035, dry_mass_g),
+           # dry mass is too low to be reliable
+           dry_mass_g = if_else(id == "CUO3039", NA_real_, dry_mass_g),
+           dry_mass_g = if_else(id == "HZK1363", NA_real_, dry_mass_g)) |>
     # remark damage
     mutate(remarks = if_else(id == "IEU4695", "damaged leaf", remarks)) |>
     select(-check_scan, -scan_checked) |>
