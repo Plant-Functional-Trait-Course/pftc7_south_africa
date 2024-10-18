@@ -1,21 +1,21 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-biomass|stem|4abc818bc7924dc3|fefb95e0d1d30254|96938a892b9de609|-1956547608||t20013.588058532s|cfeff01d1edd45fa|355|rds|local|vector|||0.059||
+biomass|stem|d1aebdac6d7f4b2f|fefb95e0d1d30254|68463697b1ad2ca5|-1956547608||t20013.5975211796s|3832a5c02985f10f|598|rds|local|vector|||0.058||
 biomass_download|stem|6b0bb335ea06df87|ed2179d614dc7ba6|2c530c1562a7fbd1|627746585|raw_data/Biomass_data_18Jan2024_forsharing.xlsx|t20013.5037270335s|c92195e46bcbfcc5|15258|file|local|vector|||6.22||
-biomass_out|stem|bf09083c4a7b309e|449332eccbc8b493|368061502d844fe6|-1991712897||t20013.5880652777s|87acf94f6e8bd357|91|rds|local|vector|||0.542||
-clean_biomass|function|a06e597d5e962f9b|||||||||||||||
-clean_comm_structure|function|6c4c3b34630cdbd0|||||||||||||||
+biomass_out|stem|bf09083c4a7b309e|449332eccbc8b493|f60ef46534c08a04|-1991712897||t20013.5975234693s|87acf94f6e8bd357|91|rds|local|vector|||0.181||
+clean_biomass|function|b7bc21acf1e77fa1|||||||||||||||
+clean_comm_structure|function|a23480e4918556cc|||||||||||||||
 clean_community|function|4241bb05b00063ae|||||||||||||||
 clean_dry_mass|function|4fb55680492fd936|||||||||||||||
-clean_leaf_area|function|53dff0d99add60ae|||||||||||||||
-clean_traits_step1|function|d0736dbe1a61e41e|||||||||||||||
+clean_leaf_area|function|c107b40866a4effc|||||||||||||||
+clean_traits_step1|function|a4652749015d8fc8|||||||||||||||
 cleaning_plan|object|4529eb8cd33fe3a9|||||||||||||||
-cnp_full_list|stem|ea17dac157a4fb50|b8d59101bc846d73|b22d01810db91954|-1983006526||t20013.5947899849s|8019b35df4f1114e|59128|rds|local|vector|||1.605||
+cnp_full_list|stem|ea17dac157a4fb50|b8d59101bc846d73|8dc1cbf34be4862e|-1983006526||t20014.1970922795s|8019b35df4f1114e|59128|rds|local|vector|||0.638||
 cnp_leaves|stem|ffcd566ace2762e3|07936a97771646d3|5e7cec8de45bc60f|940862467||t19991.27488707s|9903306e1685fb67|94|rds|local|vector|||0.803||
 cnp_trait_out|stem|d2335de574745457|67e144bb65817f84|d871aaedfa95d9c7|814063695||t20013.5948107837s|e441caf5cebd5545|94|rds|local|vector|||0.189||
 cnp_traits|stem|b80e4538932c7070|6ee6c5edd036370e|484d4934568b7da8|439210431||t20013.5948084697s|828a7a2dcc6482d0|28088|rds|local|vector|||0.16||
 combined_plan|object|702b1c023ee8076f|||||||||||||||
-comm_structure|stem|4ac26f1168e04cdb|dd4a53d3d27240d6|fdc941400c0995e9|2009115245||t20013.58805771s|cc4c74b5b2b753a5|1057|rds|local|vector|||0.164||
-comm_structure_out|stem|baae1072e484399c|06798a0dd5f9ccc7|32df2473f9fa11c2|-1968280966||t20013.5891059391s|4d4a95e0c03ab6de|103|rds|local|vector|||0.19||
+comm_structure|stem|3bbd6301d67c4a86|dd4a53d3d27240d6|0aa05a427fa37a81|2009115245||t20014.1970097646s|c421b2b52c4cb972|1062|rds|local|vector|||0.16||
+comm_structure_out|stem|baae1072e484399c|06798a0dd5f9ccc7|356ca5bcc00254bd|-1968280966||t20014.1970331985s|4d4a95e0c03ab6de|103|rds|local|vector|||0.333||
 community|stem|ce42ca9f54d1c18e|ed906ed70beafed6|98ab52b4661884bd|-522211339||t19999.3252965456s|9465244b721946d1|5774|rds|local|vector|||30.264||
 community_out|stem|c7dae208131818a8|9bbfc29c5100060f|ea68c6a5788893d3|1520484244||t19999.325320913s|7397575560806503|93|rds|local|vector|||0.03||
 correct_leaf_ID|function|b308a9d2f8d6f87c|||||||||||||||
@@ -28,7 +28,7 @@ get_list_chem_traits|function|e93bdc0b09608dd0|||||||||||||||
 heli_name_changes_download|stem|a28346681cbd5112|3cbd06264b8308d6|2c530c1562a7fbd1|588937950|raw_data/Heli_name_changes.xlsx|t19708.483816466s|70152a1cf7f65645|9519|file|local|vector|||2.856||
 heli_naming_system|stem|a159aac3ef1098f1|548a77dace50c5e6|13c461d14e1fa400|-745049662||t19999.3249147109s|2afa517069eae5bf|206|rds|local|vector|||0.013||
 import_plan|object|9255f5b280aba2c7|||||||||||||||
-leaf_area|stem|cc03a5a24823b482|b3da67ac8c17961a|4c4603ac1c594a67|-1139001930||t20012.2592734232s|58afd36b304c70b6|35177|rds|local|vector|||0.27||
+leaf_area|stem|16c18142de052fdb|b3da67ac8c17961a|efe6c4992579feb7|-1139001930||t20014.1970292356s|f9c73319cab58368|63037|rds|local|vector|||1.636||
 leaf_area_download|stem|33c89317460fdf13|629802e757b69d99|2c530c1562a7fbd1|476196079|raw_data/leaf_area_scans_25Jun2024.csv|t19899.3075930046s|a7e9598370840195|93832|file|local|vector|||3.484||
 leaf_area2_download|stem|69745b95f208fc70|73b3dc6cbd6b25df|2c530c1562a7fbd1|667559281|raw_data/leaf_area_scans_01Oct2024.csv|t19999.3249144061s|3e50ba191ff405dc|62578|file|local|vector|||4.825||
 leaf_area3_download|stem|046761d03842bd2a|3566755f66c4aee0|2c530c1562a7fbd1|130426138|raw_data/aster_senecio_fixed_leaf_areas_kag.csv|t20012.2447320057s|0d7ff1cbf08dc586|377|file|local|vector|||5.762||
@@ -49,7 +49,7 @@ raw_structure|stem|fdee0c21616ec2ad|de37f863180e1701|e1d148970f0a78f8|-717993411
 raw_traits|stem|7d4c442f52aaed3a|dd7057d5571c6d79|52b6f68540d83e5d|740529433||t19999.3249262613s|dd608e485d408aa4|84318|rds|local|vector|||0.214|Expecting numeric in H2981  R2981C8 got F1. Expecting numeric in H2989  R2989C8 got F1. Expecting numeric in H3007  R3007C8 got F4. Expecting numeric in H3010  R3010C8 got F2. Expecting numeric in H3012  R3012C8 got F1. Expecting numeric in H3013  R3013C8 got F3. Expecting numeric in H3015  R3015C8 got F3. Expecting numeric in H3016  R3016C8 got F3. Expecting numeric in H3053  R3053C8 got F1. Expecting numeric in H3362  R3362C8 got F1. Expecting numeric in H3363  R3363C8 got F1. Expecting numeric in H3364  R3364C8 got F1. Expecting numeric in H3365  R3365C8 got F1. Expecting numeric in H3366  R3366C8 got F2. Expecting numeric in H3367  R3367C8 got F1. Expecting numeric in H3368  R3368C8 got F1. Expecting numeric in H3369  R3369C8 got F1. Expecting numeric in H3370  R3370C8 got F1. Expecting numeric in H3372  R3372C8 got F1. Expecting numeric in H3373  R3373C8 got F4. Expecting numeric in H3375  R3375C8 got F4. Expecting numeric in H3376  R3376C8 got F3. Expecting numeric in H3377  R3377C8 got F4. Expecting numeric in H3378  R3378C8 got F1. Expecting numeric in H3379  R3379C8 got F1. Expecting numeric in H3381  R3381C8 got F3. Expecting numeric in H3382  R3382C8 got F1. Expecting numeric in H3383  R3383C8 got F1. Expecting numeric in H3385  R3385C8 got F1. Expecting numeric in H3386  R3386C8 got F2. Expecting numeric in H3387  R3387C8 got F1. Expecting numeric in H3388  R3388C8 got F4. Expecting numeric in H3389  R3389C8 got F4. Expecting numeric in H3390  R3390C8 got F1. Expecting numeric in H3391  R3391C8 got F2. Expecting numeric in H3393  R3393C8 got F2. Expecting numeric in H3394  R3394C8 got F1. Expecting numeric in H3395  R3395C8 got F1. Expecting numeric in H3396  R3396C8 got F1. Expecting numeric in H3397  R3397C8 got F2. Expecting numeric in H3398  R3398C8 got F3. Expecting numeric in H3399  R3399C8 got F2. Expecting numeric in H3630  R36|
 save_csv|function|68ccefdb06b3b37e|||||||||||||||
 tochange|stem|3908f95b5024e6da|4cfb2ca7dc581427|5addfdd13a0f5324|570598348||t19999.324914863s|a5a9b98a23c7fa1a|407|rds|local|vector|||0.007||
-traits|stem|3a213a93c9afd6db|e92604faca5c070f|41aa0c6384b3a1f8|-223241305||t20013.5947700348s|3d2e314b7b5885e3|169982|rds|local|vector|||7.022|There were 4 warnings in mutate.The first warning wasℹ In argument veg_height_cm  as.numericstr_replaceveg_height_cm, ,,  ..Caused by warning NAs introduced by coercionℹ Run dplyrlast_dplyr_warnings to see the 3 remaining warnings.|
+traits|stem|d4c6e71535890858|e92604faca5c070f|00c8141346f8c66e|-223241305||t20014.1970846196s|8367c58bfd67be0e|169479|rds|local|vector|||4.313|There were 4 warnings in mutate.The first warning wasℹ In argument veg_height_cm  as.numericstr_replaceveg_height_cm, ,,  ..Caused by warning NAs introduced by coercionℹ Run dplyrlast_dplyr_warnings to see the 3 remaining warnings.|
 traits_download|stem|b7dd2538e8a3902c|0209ccc98b4e1c37|2c530c1562a7fbd1|-581491708|raw_data/PFTC7_SA_raw_traits_2023_versionAug2024.xlsx|t19956.414535405s|db2a6f714d24dc58|796543|file|local|vector|||3.483||
-traits_out|stem|7ba4720677866e23|143babd31dd990e7|99b52ec3b2357b7c|982068835||t20013.5948064019s|ba51273727d9db07|90|rds|local|vector|||1.395||
+traits_out|stem|7ba4720677866e23|143babd31dd990e7|8b9ca0bd4273f33e|982068835||t20014.197093163s|ba51273727d9db07|90|rds|local|vector|||0.069||
 tranformation_plan|object|a59e942a5c0098b8|||||||||||||||

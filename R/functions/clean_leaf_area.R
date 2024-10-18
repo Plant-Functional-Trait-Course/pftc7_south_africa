@@ -10,7 +10,7 @@ clean_leaf_area <- function(raw_leaf_area, raw_leaf_area2, raw_leaf_area3){
   # raw_leaf_area3 |>
   #   anti_join(valid_codes, by = c("sample" = "hashcode"))
 
-  raw_area <- raw_leaf_area |>
+  raw_area1 <- raw_leaf_area |>
     clean_names() |>
     mutate(id = case_when(id == "mIWJ2357" ~ "IWJ2357",
                           id == "IMU9111I" ~ "IMU9111",
@@ -57,24 +57,46 @@ clean_leaf_area <- function(raw_leaf_area, raw_leaf_area2, raw_leaf_area3){
                           id == "HND8304" ~ "HNH0136",
                           id == "HNI7054" ~ "HNM6517",
                           id == "JAM7375" ~ "ITW4599",
-                          TRUE ~ id)) |>
+                          TRUE ~ id))
+
+  # find duplicates
+  duplicates1 <- raw_area1 |>
+    group_by(id) |>
+    mutate(n = n()) |> filter(n > 1)
+
+  # remove duplicates
+  raw_area2 <- raw_area1 |>
+    group_by(id) |>
+    mutate(n = n()) |>
+    tidylog::filter(n == 1) |>
+    select(-n) |>
+
+
     # recoloured scans (see info below)
     # EWD0224 does not work for scanning, no area
+    # add 17
     bind_rows(raw_leaf_area2 |>
                 # filter only the once that have changed
-                filter(id %in% c("ALG9934", "DRN5095", "EAA3997", "EHJ1141", "EIS1610", "END0045", "ENV6286", "EOT7554", "ETV8249", "EVV1051", "FAG5025", "HNZ8136", "HOY7210", "HRL1615", "HSI4571", "IWJ2357", "JAN4796")))
+                filter(id %in% c("ALG9934", "DRN5095", "EAA3997", "EHJ1141", "EIS1610", "END0045", "ENV6286", "EOT7554", "ETV8249", "EVV1051", "FAG5025", "HNZ8136", "HOY7210", "HRL1615", "HSI4571", "IWJ2357", "JAN4796")),
+              # add the correct one for the duplicates in first dataset
+              # add 27
+              raw_leaf_area2 |>
+                tidylog::inner_join(duplicates1 |>
+                                      distinct(id))) |>
+    # should remove 2: IWJ2357, JAN4796 (from raw_area1 and raw_leaf_area2)
+    tidylog::distinct()
 
   raw_area_new <- raw_leaf_area3 |>
     rename(id = sample, leaf_area_new = total.leaf.area)
 
-  raw_area <- raw_area |>
+  raw_area <- raw_area2 |>
     tidylog::left_join(raw_area_new, by = "id") |>
     mutate(leaf_area = if_else(!is.na(leaf_area_new), leaf_area_new, leaf_area)) |>
     select(-leaf_area_new)
 
 
-
 }
+
 
 # ALL FIXED
 # duplicates with different area (need to find right one)
