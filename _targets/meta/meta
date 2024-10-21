@@ -1,8 +1,8 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-biomass|stem|d1aebdac6d7f4b2f|fefb95e0d1d30254|68463697b1ad2ca5|-1956547608||t20013.5975211796s|3832a5c02985f10f|598|rds|local|vector|||0.058||
+biomass|stem|fd41eb81a29d0292|fefb95e0d1d30254|7d3a6c06a8e83966|-1956547608||t20017.5478192606s|239094893e016070|596|rds|local|vector|||0.126||
 biomass_download|stem|6b0bb335ea06df87|ed2179d614dc7ba6|2c530c1562a7fbd1|627746585|raw_data/Biomass_data_18Jan2024_forsharing.xlsx|t20013.5037270335s|c92195e46bcbfcc5|15258|file|local|vector|||6.22||
-biomass_out|stem|bf09083c4a7b309e|449332eccbc8b493|f60ef46534c08a04|-1991712897||t20013.5975234693s|87acf94f6e8bd357|91|rds|local|vector|||0.181||
-clean_biomass|function|b7bc21acf1e77fa1|||||||||||||||
+biomass_out|stem|bf09083c4a7b309e|449332eccbc8b493|a84bd1c1deadfce1|-1991712897||t20017.5478247592s|87acf94f6e8bd357|91|rds|local|vector|||0.457||
+clean_biomass|function|e0cdd6cc07b231df|||||||||||||||
 clean_comm_structure|function|a23480e4918556cc|||||||||||||||
 clean_community|function|4241bb05b00063ae|||||||||||||||
 clean_dry_mass|function|471a227923810b5d|||||||||||||||
