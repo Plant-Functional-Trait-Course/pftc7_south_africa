@@ -99,6 +99,17 @@ import_plan <- list(
     format = "file"
   ),
 
+  # biomass
+  tar_target(
+    name = biomass_download,
+    command =  get_file(node = "hk2cy",
+                        file = "Biomass_data_18Jan2024_forsharing.xlsx",
+                        path = "raw_data",
+                        remote_path = "raw_data/raw_biomass_data"),
+    format = "file"
+  ),
+
+
   ### IMPORT DATA
 
   # import cover data
@@ -126,6 +137,14 @@ import_plan <- list(
   tar_target(
     name = name_trail,
     command = read_csv(file = name_trail_download)
+  ),
+
+  # comm structure
+  tar_target(
+    name = raw_structure,
+    command = read_excel(path = cover_download,
+                         sheet = "plotlevel abiotic",
+                         col_names = FALSE)
   ),
 
   # import raw traits
@@ -166,6 +185,11 @@ import_plan <- list(
   tar_target(
     name = raw_leaf_area3,
     command = read_csv(file = leaf_area3_download)
+  ),
+
+  tar_target(
+    name = raw_biomass,
+    command = read_excel(path = biomass_download, skip = 2)
   )
 
 )

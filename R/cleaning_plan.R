@@ -8,6 +8,12 @@ cleaning_plan <- list(
     command = clean_community(raw_cover, raw_extra, raw_fertility, name_trail, heli_naming_system)
   ),
 
+  # clean comm structure
+  tar_target(
+    name = comm_structure,
+    command = clean_comm_structure(raw_structure)
+  ),
+
   # clean dry mass
   tar_target(
     name = dry_mass,
@@ -24,6 +30,12 @@ cleaning_plan <- list(
   tar_target(
     name = traits,
     command = clean_traits_step1(raw_traits, name_trail, tochange, heli_naming_system, dry_mass, leaf_area)
+  ),
+
+  # clean biomass
+  tar_target(
+    name = biomass,
+    command = clean_biomass(raw_biomass)
   )
 
 
