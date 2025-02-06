@@ -22,6 +22,12 @@ output_plan <- list(
                        name = "traits_2023")
   ),
 
+  tar_target(
+    name = rangeX_traits_out,
+    command = save_csv(file = rangeX_traits,
+                       name = "RangeX_traits_2023")
+  ),
+
   # select cnp leaves and make table
   tar_target(
     name = cnp_full_list,

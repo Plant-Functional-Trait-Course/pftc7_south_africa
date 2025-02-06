@@ -99,6 +99,16 @@ import_plan <- list(
     format = "file"
   ),
 
+  # change the naming system rangeX traits
+  tar_target(
+    name = rangeX_naming_system_download,
+    command =  get_file(node = "hk2cy",
+                        file = "rangex_name_key.csv",
+                        path = "raw_data",
+                        remote_path = "raw_data/raw_trait_data"),
+    format = "file"
+  ),
+
   # biomass
   tar_target(
     name = biomass_download,
@@ -155,6 +165,12 @@ import_plan <- list(
   ),
 
   tar_target(
+    name = raw_traitsX,
+    command = read_excel(path = traits_download,
+                         sheet = "RangeX")
+  ),
+
+  tar_target(
     name = tochange,
     command = read_excel(path = heli_name_changes_download)
   ),
@@ -185,6 +201,12 @@ import_plan <- list(
   tar_target(
     name = raw_leaf_area3,
     command = read_csv(file = leaf_area3_download)
+  ),
+
+  tar_target(
+    name = rangeX_name,
+    command = read_csv(file = rangeX_naming_system_download) |>
+      clean_names()
   ),
 
   tar_target(

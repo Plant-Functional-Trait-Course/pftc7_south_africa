@@ -32,6 +32,13 @@ cleaning_plan <- list(
     command = clean_traits_step1(raw_traits, name_trail, tochange, heli_naming_system, dry_mass, leaf_area)
   ),
 
+  # rangeX traits
+  # clean traits step 1: initial cleaning and fixing names
+  tar_target(
+    name = rangeX_traits,
+    command = clean_rangex_traits(raw_traitsX, dry_mass, leaf_area, rangeX_name)
+  ),
+
   # clean biomass
   tar_target(
     name = biomass,
