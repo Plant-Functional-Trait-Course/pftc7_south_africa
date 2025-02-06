@@ -4,6 +4,7 @@ library(tidyverse)
 library(ggpubr)
 library(ggridges)
 library(RColorBrewer)
+library(viridisLite)
 
 
 #the most recent version of clean traits
@@ -16,8 +17,12 @@ trait_data<- read.csv("raw_data/PFTC7_SA_clean_traits_2023.csv") %>%
 ### Traits by elevation
 
 scl= 10
-alp3 = 0.6
-cols2 <-plasma(5)
+alp3 = 0.7
+cols2<- c("#6F00A8", "#A72197",  "#DD5E66", "#EF7F4F" , "#FDCB26")
+#cols2 <-plasma(5)
+#these would be the full palette if site 3000 is included in figure:
+#cols2<- c("#0D0887", "#6F00A8", "#A72197",  "#DD5E66", "#EF7F4F" , "#FDCB26")
+
 
 lwd = 0.5
 
