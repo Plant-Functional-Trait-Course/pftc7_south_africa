@@ -74,8 +74,11 @@ clean_rangex_traits <- function(raw_traitsX, dry_mass, leaf_area, rangeX_name){
            leaf_area_cm2 = leaf_area_total_cm2 / wet_bulk_nr
     ) |>
 
-    # double area for microchloa caffra, rendlia altera
-    # mutate(leaf_area_cm2 = if_else(str_detect(species, "microchloa|rendlia"), 2*leaf_area_cm2, leaf_area_cm2)) |>
+    # double area for koeleria capensis
+    mutate(leaf_area_cm2 = if_else(str_detect(species, "koeleria"), 2*leaf_area_cm2, leaf_area_cm2)) |>
+
+    # double leaf thickness for koeleria capensis
+    mutate(leaf_thickness_mm = if_else(str_detect(species, "koeleria"), 2*leaf_thickness_mm, leaf_thickness_mm)) |>
 
     # Calculate SLA and LDMC (replace with wet mass for now)
     mutate(sla_cm2_g = leaf_area_cm2 / dry_mass_g,
@@ -89,15 +92,17 @@ clean_rangex_traits <- function(raw_traitsX, dry_mass, leaf_area, rangeX_name){
     # fix species names
     tidylog::left_join(rangeX_name |>
                          select(correct_name, synonym1), by = c("species" = "synonym1")) |>
+    mutate(species = if_else(!is.na(correct_name), correct_name, species)) |>
     select(-correct_name) |>
     tidylog::left_join(rangeX_name |>
                          select(correct_name, synonym2), by = c("species" = "synonym2")) |>
+    mutate(species = if_else(!is.na(correct_name), correct_name, species)) |>
 
     mutate(species = case_match(species,
                                 "senecio sp. 1" ~ "senecio sp.",
                                 "tenaxia wiry" ~ "tenaxia sp.",
                                 "thesium sp 2" ~ "thesium sp.",
-                                "tenaxia distichia" ~ "tanaxia disticha",
+                                #"tenaxia distichia" ~ "tanaxia disticha",
                                 .default = species)) |>
 
     mutate(flag = if_else(is.na(treat_1), "missing warming treatment, plot_id and block_id", NA_character_)) |>

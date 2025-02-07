@@ -369,8 +369,11 @@ clean_traits_step1 <- function(raw_traits, name_trail, tochange, heli_naming_sys
            leaf_area_cm2 = leaf_area_total_cm2 / wet_bulk_nr
            ) |>
 
-    # double area for microchloa caffra, rendlia altera
-    # mutate(leaf_area_cm2 = if_else(str_detect(species, "microchloa|rendlia"), 2*leaf_area_cm2, leaf_area_cm2)) |>
+    # double area for microchloa caffra, rendlia altera, elionurus muticus, koeleria capensis, ficinia cinnamomea
+    mutate(leaf_area_cm2 = if_else(str_detect(species, "microchloa|rendlia|elionurus|koeleria|ficinia"), 2*leaf_area_cm2, leaf_area_cm2)) |>
+
+    # double leaf thickness for microchloa caffra, rendlia altera, elionurus muticus, koeleria capensis, ficinia cinnamomea
+    mutate(leaf_thickness_mm = if_else(str_detect(species, "microchloa|rendlia|elionurus|koeleria|ficinia"), 2*leaf_thickness_mm, leaf_thickness_mm)) |>
 
       # Calculate SLA and LDMC (replace with wet mass for now)
     mutate(sla_cm2_g = leaf_area_cm2 / dry_mass_g,
