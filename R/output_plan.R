@@ -42,7 +42,7 @@ output_plan <- list(
         cnp_full_list |>
           ungroup() |>
           group_by(site_id, aspect, species) |>
-          slice_sample(n = 3)
+          slice_sample(n = 2)
       }
   ),
 
