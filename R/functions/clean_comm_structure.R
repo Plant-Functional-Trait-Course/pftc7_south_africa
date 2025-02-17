@@ -9,6 +9,7 @@ clean_comm_structure <- function(raw_structure){
     clean_names() %>%
     mutate(date = dmy(date),
            aspect = if_else(aspect == "W", "west", "east"),
+           treatment_only_for_range_x = if_else(treatment_only_for_range_x == "Control", "ambient", "warm"),
            across(contains("height"), as.numeric),
            across(contains("cover"), as.numeric)) %>%
     mutate(vegetation_height = rowMeans(select(., contains("height")), na.rm = TRUE)) |>

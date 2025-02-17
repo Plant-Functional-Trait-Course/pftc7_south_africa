@@ -167,6 +167,11 @@ clean_community <- function(raw_cover, raw_extra, raw_fertility, name_trail, hel
                                                  naming_system = heli_naming_system,
                                                  data_species_column = "species")
 
+  # streamline with other data
+  community  |>
+    mutate(aspect = if_else(aspect == "W", "west", "east"),
+           treatment_only_for_range_x = if_else(treatment_only_for_range_x == "Control", "ambient", "warm"))
+
 }
 
 
