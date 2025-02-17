@@ -58,6 +58,14 @@ output_plan <- list(
     name = biomass_out,
     command = save_csv(file = biomass,
                        name = "biomass_2023")
+  ),
+
+  # species list
+  tar_target(
+    name = sp_out,
+    command = make_sp_list(community, traits) %>%
+      save_csv(file = .,
+               name = "species_list_2023")
   )
 
 
