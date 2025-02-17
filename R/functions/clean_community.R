@@ -167,7 +167,21 @@ clean_community <- function(raw_cover, raw_extra, raw_fertility, name_trail, hel
                                                  naming_system = heli_naming_system,
                                                  data_species_column = "species")
 
+  # streamline with other data
+  community  |>
+    mutate(aspect = if_else(aspect == "W", "west", "east"),
+           treatment_only_for_range_x = if_else(treatment_only_for_range_x == "Control", "ambient", "warm"),
+           species = str_replace_all(species, "_", " "),
+           species = case_match(species,
+                                "c f hesperantha baurii" ~ "hesperantha baurii cf",
+                                "c f moraea inclinata" ~ "moraea inclinata cf",
+                                "c f satyrium longicauda" ~ "satyrium longicauda cf",
+                                "cf helichrysum albo brunneum" ~ "helichrysum albo brunneum cf",
+                                "eucomis cf humilis" ~ "eucomis humilis cf",
+                                "stachys cf natalensis" ~ "stachys natalensis cf",
+                                "ledebouria cf cooperi" ~ "ledebouria cooperi cf",
+                                "less blunt leaved gnidia" ~ "less blunt leaved cinidia",
+                                .default = species))
+
 }
-
-
 
