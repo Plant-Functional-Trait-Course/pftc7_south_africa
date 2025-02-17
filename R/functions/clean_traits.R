@@ -385,7 +385,24 @@ clean_traits_step1 <- function(raw_traits, name_trail, tochange, heli_naming_sys
     # Make data pretty
     # 7 NAs for date, replace with 8, which is in the middle of the sampling campaign
     mutate(day_not_date = if_else(is.na(day_not_date), 8, day_not_date),
-           date = ymd(paste0("2023-12-", day_not_date)))
+           date = ymd(paste0("2023-12-", day_not_date))) |>
+    # fix last species names
+    mutate(species = str_replace_all(species, "_", " "),
+           species = case_match(species,
+                                "c.f. hesperantha baurii" ~ "hesperantha baurii cf",
+                                "c f satyrium longicauda" ~ "satyrium longicauda cf",
+                                "cf helichrysum albo brunneum" ~ "helichrysum albo brunneum cf",
+                                "cf holcus lanatus" ~ "holcus lanatus cf",
+                                "argyrolobium sp." ~ "argyrolobium sp",
+                                "alepidia sp." ~ "alepidia sp",
+                                "eucomis cf humilis" ~ "eucomis humilis cf",
+                                "eucomis purple_base" ~ "eucomis purple base",
+                                "stachys cf natalensis" ~ "stachys natalensis cf",
+                                "ledebouria cf cooperi" ~ "ledebouria cooperi cf",
+                                .default = species))
+
+
+
 
   # flag data
   traits <- traits6 |>
