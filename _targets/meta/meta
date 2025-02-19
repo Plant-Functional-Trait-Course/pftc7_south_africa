@@ -1,8 +1,8 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-biomass|stem|fd41eb81a29d0292|fefb95e0d1d30254|7d3a6c06a8e83966|-1956547608||t20017.5478192606s|239094893e016070|596|rds|local|vector|||0.126||
+biomass|stem|1fd42410552c574a|fefb95e0d1d30254|558324a6ef8427fa|-1956547608||t20138.5192288218s|de5949a51cc4e2b8|618|rds|local|vector|||0.236||
 biomass_download|stem|6b0bb335ea06df87|ed2179d614dc7ba6|2c530c1562a7fbd1|627746585|raw_data/Biomass_data_18Jan2024_forsharing.xlsx|t20013.5037270335s|c92195e46bcbfcc5|15258|file|local|vector|||6.22||
-biomass_out|stem|bf09083c4a7b309e|449332eccbc8b493|a84bd1c1deadfce1|-1991712897||t20017.5478247592s|87acf94f6e8bd357|91|rds|local|vector|||0.457||
-clean_biomass|function|e0cdd6cc07b231df|||||||||||||||
+biomass_out|stem|bf09083c4a7b309e|449332eccbc8b493|be1ce13830f303c6|-1991712897||t20138.519234953s|87acf94f6e8bd357|91|rds|local|vector|||0.487||
+clean_biomass|function|45167118ad34fc70|||||||||||||||
 clean_comm_structure|function|61bf5ec94ab3e20e|||||||||||||||
 clean_community|function|614117de3ff899ad|||||||||||||||
 clean_dry_mass|function|471a227923810b5d|||||||||||||||
@@ -14,7 +14,7 @@ cnp_full_list|stem|c55600470459ceb6|b8d59101bc846d73|128bafbe4f3c2f64|-198300652
 cnp_leaves|stem|ffcd566ace2762e3|07936a97771646d3|5e7cec8de45bc60f|940862467||t19991.27488707s|9903306e1685fb67|94|rds|local|vector|||0.803||
 cnp_trait_out|stem|d2335de574745457|67e144bb65817f84|cda25d9808226eca|814063695||t20136.5733456541s|e441caf5cebd5545|94|rds|local|vector|||0.034||
 cnp_traits|stem|0f23eaf278b1e270|1b02def2a3995352|a1f5dbf958eff9ae|439210431||t20136.5733451433s|7f45952a20579aee|22020|rds|local|vector|||0.159||
-combined_plan|object|859083f0dcd21323|||||||||||||||
+combined_plan|object|f3dc0245aaf4e614|||||||||||||||
 comm_structure|stem|1581f582f2bcefaf|dd4a53d3d27240d6|0822bb1b3c5fad7c|2009115245||t20136.3743557335s|b6bd2df6e677794a|1067|rds|local|vector|||0.276||
 comm_structure_out|stem|baae1072e484399c|06798a0dd5f9ccc7|80765d15d2df86ff|-1968280966||t20136.3743584354s|4d4a95e0c03ab6de|103|rds|local|vector|||0.215||
 community|stem|39e72a3efaf4b6c4|ed906ed70beafed6|d8186528b7f68868|-522211339||t20136.5732840903s|99b921d8cd4d963d|5792|rds|local|vector|||52.238||
@@ -38,7 +38,7 @@ name_trail|stem|c05be4e68e6f3380|9333ade470ec164e|486302945a254319|1037313943||t
 name_trail_download|stem|a34835ce490adff1|2cbdea3d76b3aeaa|2c530c1562a7fbd1|1713762943|raw_data/std_names_editing.csv|t19707.3688206824s|b6c5d45ba71254fa|5612|file|local|vector|||2.254||
 new_heli_naming_system|function|89296c01e99ca563|||||||||||||||
 new_heli_naming_system_download|stem|4103b2fd3f184c4a|2249b67f3de7e2ae|2c530c1562a7fbd1|-283592760|raw_data/New Helichrysum naming system.xlsx|t19851.4135796404s|80192d0b402e4e2b|8565|file|local|vector|||4.977||
-output_plan|object|0af301aec3a11752|||||||||||||||
+output_plan|object|3e6919e74890649b|||||||||||||||
 rangeX_name|stem|96441fc2e4d695c8|659a1b314f4b4ac0|bbb1d1b45d8c7139|-1268954495||t20125.3309940487s|7f7b7425f5944139|814|rds|local|vector|||0.309||
 rangeX_naming_system_download|stem|7cc323cf13709ef4|d8a943d01a1b96ff|2c530c1562a7fbd1|-1190260645|raw_data/rangex_name_key.csv|t20125.3157221576s|e316722e3d6ae96c|1036|file|local|vector|||5.3||
 rangeX_traits|stem|628c6d07882f20fa|8bb3af73f48f52dd|945dd2d7a57c329a|220876788||t20126.3152184504s|4ef903d621523a18|21933|rds|local|vector|||0.836|There were 5 warnings in mutate.The first warning wasℹ In argument veg_height_cm  as.numericveg_height_cm.Caused by warning NAs introduced by coercionℹ Run dplyrlast_dplyr_warnings to see the 4 remaining warnings.|
