@@ -6,15 +6,16 @@ clean_biomass|function|45167118ad34fc70|||||||||||||||
 clean_comm_structure|function|61bf5ec94ab3e20e|||||||||||||||
 clean_community|function|614117de3ff899ad|||||||||||||||
 clean_dry_mass|function|471a227923810b5d|||||||||||||||
+clean_geodiv|function|8fe70a0a689947e4|||||||||||||||
 clean_leaf_area|function|c107b40866a4effc|||||||||||||||
 clean_rangex_traits|function|7142ab57b164dda5|||||||||||||||
 clean_traits_step1|function|787674867379d8bc|||||||||||||||
-cleaning_plan|object|07d86f7e76e0c4c2|||||||||||||||
+cleaning_plan|object|a010da933e71d57a|||||||||||||||
 cnp_full_list|stem|c55600470459ceb6|b8d59101bc846d73|128bafbe4f3c2f64|-1983006526||t20136.5733417961s|4be9fc37f5f87d0a|59067|rds|local|vector|||0.834||
 cnp_leaves|stem|ffcd566ace2762e3|07936a97771646d3|5e7cec8de45bc60f|940862467||t19991.27488707s|9903306e1685fb67|94|rds|local|vector|||0.803||
 cnp_trait_out|stem|d2335de574745457|67e144bb65817f84|cda25d9808226eca|814063695||t20136.5733456541s|e441caf5cebd5545|94|rds|local|vector|||0.034||
 cnp_traits|stem|0f23eaf278b1e270|1b02def2a3995352|a1f5dbf958eff9ae|439210431||t20136.5733451433s|7f45952a20579aee|22020|rds|local|vector|||0.159||
-combined_plan|object|f3dc0245aaf4e614|||||||||||||||
+combined_plan|object|5c33f952fc3fa02f|||||||||||||||
 comm_structure|stem|1581f582f2bcefaf|dd4a53d3d27240d6|0822bb1b3c5fad7c|2009115245||t20136.3743557335s|b6bd2df6e677794a|1067|rds|local|vector|||0.276||
 comm_structure_out|stem|baae1072e484399c|06798a0dd5f9ccc7|80765d15d2df86ff|-1968280966||t20136.3743584354s|4d4a95e0c03ab6de|103|rds|local|vector|||0.215||
 community|stem|39e72a3efaf4b6c4|ed906ed70beafed6|d8186528b7f68868|-522211339||t20136.5732840903s|99b921d8cd4d963d|5792|rds|local|vector|||52.238||
@@ -24,11 +25,13 @@ cover_download|stem|767926778aaf1de5|40606d17ef3b6905|2c530c1562a7fbd1|139416679
 dry_mass|stem|035c68cb87330760|4fcb89080ea15384|858960f30b57f212|-560100802||t20014.2140534694s|368ddf942f14591e|42830|rds|local|vector|||0.288||
 dry_mass_download|stem|c6642ce6cfda53ae|3f368028c060b5f5|2c530c1562a7fbd1|954536336|raw_data/PFTC7_SA_raw_dry_mass_2023_versionJuly2024.csv|t19930.4245199146s|a71a9702e86422d3|144184|file|local|vector|||2.555||
 extra_cover_download|stem|daf61eb51a928a26|798322eb74a159da|2c530c1562a7fbd1|-1528225194|raw_data/Species_added_during_FT_sampling.xlsx|t19707.3687532852s|3ca8b50514e8c9be|11733|file|local|vector|||2.301||
+geodiv|stem|b7bcadd2b9bd2b4e|2235d9caaf60e619|26bb3868b2a683d7|2015459583||t20162.5340975139s|108c9cf07ec1f4eb|953|rds|local|vector|||0.332|There were 10 warnings in mutate.The first warning wasℹ In argument acrosscorganic_soilmesotopography, as.numeric.Caused by warning NAs introduced by coercionℹ Run dplyrlast_dplyr_warnings to see the 9 remaining warnings.|
+geodiv_out|stem|d8669946550fa4bc|13b0a2bb8ec0d409|a766bb646228b931|-1442792431||t20162.5345780792s|530f140998b50d1c|112|rds|local|vector|||0.309||
 get_chem_trait_batch|function|59c52ea84a34b2fe|||||||||||||||
 get_list_chem_traits|function|e93bdc0b09608dd0|||||||||||||||
 heli_name_changes_download|stem|a28346681cbd5112|3cbd06264b8308d6|2c530c1562a7fbd1|588937950|raw_data/Heli_name_changes.xlsx|t19708.483816466s|70152a1cf7f65645|9519|file|local|vector|||2.856||
 heli_naming_system|stem|a159aac3ef1098f1|548a77dace50c5e6|13c461d14e1fa400|-745049662||t19999.3249147109s|2afa517069eae5bf|206|rds|local|vector|||0.013||
-import_plan|object|a398b3de5488dec3|||||||||||||||
+import_plan|object|a6a53ea9012af920|||||||||||||||
 leaf_area|stem|16c18142de052fdb|b3da67ac8c17961a|efe6c4992579feb7|-1139001930||t20014.1970292356s|f9c73319cab58368|63037|rds|local|vector|||1.636||
 leaf_area_download|stem|33c89317460fdf13|629802e757b69d99|2c530c1562a7fbd1|476196079|raw_data/leaf_area_scans_25Jun2024.csv|t19899.3075930046s|a7e9598370840195|93832|file|local|vector|||3.484||
 leaf_area2_download|stem|69745b95f208fc70|73b3dc6cbd6b25df|2c530c1562a7fbd1|667559281|raw_data/leaf_area_scans_01Oct2024.csv|t19999.3249144061s|3e50ba191ff405dc|62578|file|local|vector|||4.825||
@@ -38,7 +41,7 @@ name_trail|stem|c05be4e68e6f3380|9333ade470ec164e|486302945a254319|1037313943||t
 name_trail_download|stem|a34835ce490adff1|2cbdea3d76b3aeaa|2c530c1562a7fbd1|1713762943|raw_data/std_names_editing.csv|t19707.3688206824s|b6c5d45ba71254fa|5612|file|local|vector|||2.254||
 new_heli_naming_system|function|89296c01e99ca563|||||||||||||||
 new_heli_naming_system_download|stem|4103b2fd3f184c4a|2249b67f3de7e2ae|2c530c1562a7fbd1|-283592760|raw_data/New Helichrysum naming system.xlsx|t19851.4135796404s|80192d0b402e4e2b|8565|file|local|vector|||4.977||
-output_plan|object|3e6919e74890649b|||||||||||||||
+output_plan|object|9a03064556a4d40e|||||||||||||||
 rangeX_name|stem|96441fc2e4d695c8|659a1b314f4b4ac0|bbb1d1b45d8c7139|-1268954495||t20125.3309940487s|7f7b7425f5944139|814|rds|local|vector|||0.309||
 rangeX_naming_system_download|stem|7cc323cf13709ef4|d8a943d01a1b96ff|2c530c1562a7fbd1|-1190260645|raw_data/rangex_name_key.csv|t20125.3157221576s|e316722e3d6ae96c|1036|file|local|vector|||5.3||
 rangeX_traits|stem|628c6d07882f20fa|8bb3af73f48f52dd|945dd2d7a57c329a|220876788||t20126.3152184504s|4ef903d621523a18|21933|rds|local|vector|||0.836|There were 5 warnings in mutate.The first warning wasℹ In argument veg_height_cm  as.numericveg_height_cm.Caused by warning NAs introduced by coercionℹ Run dplyrlast_dplyr_warnings to see the 4 remaining warnings.|
@@ -48,6 +51,7 @@ raw_cover|stem|f7988ad7be7bb522|1b3f79b6ef53e8fe|e1d148970f0a78f8|-208359141||t1
 raw_dry_mass|stem|6ef89dca0d5ef22f|60e23468abea1b14|5bac6c51b790e26a|1173413247||t19999.3249193397s|0c3193c1986106b5|53419|rds|local|vector|||0.367||
 raw_extra|stem|bbaa54c8ba91361e|24ef9b0a8f43c13b|56d37335367bbe25|-323828502||t19999.3249201657s|230493205a60218d|1272|rds|local|vector|||0.01||
 raw_fertility|stem|237088156c2579c9|1976e7ba2a4a334e|e1d148970f0a78f8|-19994907||t19999.3249424809s|50f598a2127db7db|4833|rds|local|vector|||0.704||
+raw_geodiv|stem|824ebc7a43ba14ac|26c3d145fc52d3e2|2c530c1562a7fbd1|600770384||t20162.4124762225s|801baff5704b425d|685|rds|local|vector|||1.246||
 raw_leaf_area|stem|56103ecb895a019b|2d695f904e851ed1|a61cda90938dd755|186575011||t19999.324923396s|9e2e68847fc3c09f|45811|rds|local|vector|||0.145||
 raw_leaf_area2|stem|39ed995d787f60d4|202ab0ca4ad0ade2|69d0c4f4a73da5d9|150551042||t19999.3249430434s|aa162bae181f90f3|35487|rds|local|vector|||0.038||
 raw_leaf_area3|stem|3c78a25e0753eb23|519a2b5803624ad2|0651e5c219c85a67|-888293937||t20012.247407811s|dcb7e52431e6460e|580|rds|local|vector|||0.425||

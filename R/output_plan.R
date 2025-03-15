@@ -66,6 +66,13 @@ output_plan <- list(
     command = make_sp_list(community, traits) %>%
       save_csv(file = .,
                name = "species_list_2023")
+  ),
+
+  # species list
+  tar_target(
+    name = geodiv_out,
+    command = save_csv(file = geodiv,
+                       name = "geodiversity_microtopography_2023")
   )
 
 

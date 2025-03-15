@@ -43,7 +43,12 @@ cleaning_plan <- list(
   tar_target(
     name = biomass,
     command = clean_biomass(raw_biomass)
-  )
+  ),
 
+  # clean geodiversity
+  tar_target(
+    name = geodiv,
+    command = clean_geodiv(raw_geodiv)
+  )
 
 )

@@ -51,6 +51,7 @@ clean_data/*
 *.jpeg
 *.jpg
 *.tif
+*.ai
 
 *.csv
 *.xls
