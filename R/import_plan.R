@@ -212,6 +212,11 @@ import_plan <- list(
   tar_target(
     name = raw_biomass,
     command = read_excel(path = biomass_download, skip = 2)
+  ),
+
+  tar_target(
+    name = raw_geodiv,
+    command = read_excel(path = "raw_data/PFTC7_raw_plot_level_data_geodiversity.xlsx")
   )
 
 )
