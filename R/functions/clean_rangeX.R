@@ -103,13 +103,29 @@ clean_rangex_traits <- function(raw_traitsX, dry_mass, leaf_area, rangeX_name){
                                 "tenaxia wiry" ~ "tenaxia sp.",
                                 "thesium sp 2" ~ "thesium sp.",
                                 #"tenaxia distichia" ~ "tanaxia disticha",
-                                .default = species)) |>
+                                .default = species),
+          species = str_to_sentence(species)) |>
 
     mutate(flag = if_else(is.na(treat_1), "missing warming treatment, plot_id and block_id", NA_character_)) |>
 
-    tidylog::select(id, date, project, aspect, site_id, elevation_m_asl, vegetation, treat_warming = treat_1, treat_competition = treat_2, block_id, plot_id, species, veg_height_cm, rep_height_cm, wet_mass_g, dry_mass_g, leaf_area_cm2, leaf_thickness_mm, sla_cm2_g, ldmc, flag) |>
+    tidylog::select(id, date, project, aspect, site_id, elevation_m_asl, treatment_warming = treat_1, treatment_competition = treat_2, block_id, plot_id, species, veg_height_cm, rep_height_cm, wet_mass_g, dry_mass_g, leaf_area_cm2, leaf_thickness_mm, sla_cm2_g, ldmc, flag) |>
     tidylog::pivot_longer(cols = c(veg_height_cm:ldmc), names_to = "traits", values_to = "value") |>
-    tidylog::filter(!is.na(value))
+    tidylog::filter(!is.na(value)) |> 
+    # add column with units
+         mutate(unit = case_when(
+                str_detect(traits, "_cm2_g") ~ "cm2 g-1",
+                str_detect(traits, "_cm2") ~ "cm2",
+                str_detect(traits, "_cm") ~ "cm",
+                str_detect(traits, "_mm") ~ "mm",
+                str_detect(traits, "_g") ~ "g",
+                TRUE ~ "g g-1")
+               ) |> 
+         mutate(
+    traits = str_remove(
+      traits,
+      "_cm2_g$|_cm2$|_cm$|_mm$|_g$"  # matches any of the known suffixes at the end
+    )
+  )
 
 
 }

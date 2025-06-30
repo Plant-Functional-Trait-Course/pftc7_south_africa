@@ -399,7 +399,8 @@ clean_traits_step1 <- function(raw_traits, name_trail, tochange, heli_naming_sys
                                 "eucomis purple_base" ~ "eucomis purple base",
                                 "stachys cf natalensis" ~ "stachys natalensis cf",
                                 "ledebouria cf cooperi" ~ "ledebouria cooperi cf",
-                                .default = species))
+                                .default = species),
+           species = str_to_sentence(species))
 
 
 
@@ -443,7 +444,22 @@ clean_traits_step1 <- function(raw_traits, name_trail, tochange, heli_naming_sys
     select(id, date, project, aspect, site_id, elevation_m_asl, plot_id, plant_id, species, veg_height_cm, rep_height_cm, wet_mass_g, dry_mass_g, leaf_area_cm2, leaf_thickness_mm, sla_cm2_g, ldmc, missing_data_flag, problem_flag) |>
     tidylog::pivot_longer(cols = c(veg_height_cm:ldmc), names_to = "traits", values_to = "value") |>
     filter(!is.na(value)) |>
-    select(id:species, traits, value, problem_flag) |>
+       # add column with units
+         mutate(unit = case_when(
+                str_detect(traits, "_cm2_g") ~ "cm2 g-1",
+                str_detect(traits, "_cm2") ~ "cm2",
+                str_detect(traits, "_cm") ~ "cm",
+                str_detect(traits, "_mm") ~ "mm",
+                str_detect(traits, "_g") ~ "g",
+                TRUE ~ "g g-1")
+               ) |> 
+         mutate(
+    traits = str_remove(
+      traits,
+      "_cm2_g$|_cm2$|_cm$|_mm$|_g$"  # matches any of the known suffixes at the end
+    )
+  ) |> 
+    select(id:species, traits, value, unit, problem_flag) |>
     # problems relevant for all traits except heights
     mutate(problem_flag = case_when(problem_flag %in% c("leaf damaged", "damage and missing petiole", "missing petiole", "missing stipules", "missing petiole and stipules", "missing leaflets") & traits %in% c("veg_height_cm", "rep_height_cm") ~ NA_character_,
            TRUE ~ problem_flag),
