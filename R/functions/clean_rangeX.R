@@ -125,11 +125,33 @@ clean_rangex_traits <- function(raw_traitsX, dry_mass, leaf_area, rangeX_name){
       traits,
       "_cm2_g$|_cm2$|_cm$|_mm$|_g$"  # matches any of the known suffixes at the end
     )
-  )
+  ) |> 
+         # merge block_id and plot_id 
+         mutate(plot_id = paste(block_id, plot_id, sep = ".")) |> 
+         select(-block_id)
 
 
 }
 
+
+       6       5
+       1       3
+       5       6
+       9       5
+       1       4
+       6       4
+       10       3
+       9       4
+       10       4
+       5       5
+11       NA      NA
+12        6       3
+13        4       4
+
+# check envelopes
+rangeX_traits |> 
+       #filter(block_id == 6, plot_id == 3)
+       filter(block_id == 4, plot_id == 4)
 
 # dd |>
 #   ggplot(aes(x = (leaf_area_cm2), y = log(wet_mass_g), colour = species == "satyrium longicauda")) +
