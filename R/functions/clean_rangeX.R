@@ -24,6 +24,9 @@ clean_rangex_traits <- function(raw_traitsX, dry_mass, leaf_area, rangeX_name){
     tidylog::mutate(site_id = if_else(is.na(site_id), "HS", site_id),
                     vegetation = if_else(is.na(vegetation), "native", vegetation),
                     treat_2 = if_else(is.na(treat_2), "vegetation", treat_2)) |>
+         
+       # fix treat_1
+         mutate(treat_1 = if_else(id == "AOF3720", "ambient", treat_1)) |> 
 
     # add aspect
     mutate(aspect = "west") |>
@@ -106,7 +109,9 @@ clean_rangex_traits <- function(raw_traitsX, dry_mass, leaf_area, rangeX_name){
                                 .default = species),
           species = str_to_sentence(species)) |>
 
-    mutate(flag = if_else(is.na(treat_1), "missing warming treatment, plot_id and block_id", NA_character_)) |>
+    mutate(flag = if_else(is.na(treat_1), "missing warming treatment, plot_id and block_id", NA_character_),
+       flag = if_else(block_id == 4 & plot_id == 4, "unknown plot_id", flag),
+       flag = if_else(block_id == 6 & plot_id == 3, "unknown plot_id", flag)) |>
 
     tidylog::select(id, date, project, aspect, site_id, elevation_m_asl, treatment_warming = treat_1, treatment_competition = treat_2, block_id, plot_id, species, veg_height_cm, rep_height_cm, wet_mass_g, dry_mass_g, leaf_area_cm2, leaf_thickness_mm, sla_cm2_g, ldmc, flag) |>
     tidylog::pivot_longer(cols = c(veg_height_cm:ldmc), names_to = "traits", values_to = "value") |>
@@ -132,28 +137,3 @@ clean_rangex_traits <- function(raw_traitsX, dry_mass, leaf_area, rangeX_name){
 
 
 }
-
-
-       6       5
-       1       3
-       5       6
-       9       5
-       1       4
-       6       4
-       10       3
-       9       4
-       10       4
-       5       5
-11       NA      NA
-12        6       3
-13        4       4
-
-# check envelopes
-rangeX_traits |> 
-       #filter(block_id == 6, plot_id == 3)
-       filter(block_id == 4, plot_id == 4)
-
-# dd |>
-#   ggplot(aes(x = (leaf_area_cm2), y = log(wet_mass_g), colour = species == "satyrium longicauda")) +
-#   geom_point(alpha = 0.3)
-# dd |> filter(species == "satyrium longicauda") |> as.data.frame()
