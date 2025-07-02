@@ -24,6 +24,9 @@ clean_rangex_traits <- function(raw_traitsX, dry_mass, leaf_area, rangeX_name){
     tidylog::mutate(site_id = if_else(is.na(site_id), "HS", site_id),
                     vegetation = if_else(is.na(vegetation), "native", vegetation),
                     treat_2 = if_else(is.na(treat_2), "vegetation", treat_2)) |>
+         
+       # fix treat_1
+         mutate(treat_1 = if_else(id == "AOF3720", "ambient", treat_1)) |> 
 
     # add aspect
     mutate(aspect = "west") |>
@@ -103,19 +106,34 @@ clean_rangex_traits <- function(raw_traitsX, dry_mass, leaf_area, rangeX_name){
                                 "tenaxia wiry" ~ "tenaxia sp.",
                                 "thesium sp 2" ~ "thesium sp.",
                                 #"tenaxia distichia" ~ "tanaxia disticha",
-                                .default = species)) |>
+                                .default = species),
+          species = str_to_sentence(species)) |>
 
-    mutate(flag = if_else(is.na(treat_1), "missing warming treatment, plot_id and block_id", NA_character_)) |>
+    mutate(flag = if_else(is.na(treat_1), "missing warming treatment, plot_id and block_id", NA_character_),
+       flag = if_else(block_id == 4 & plot_id == 4, "unknown plot_id", flag),
+       flag = if_else(block_id == 6 & plot_id == 3, "unknown plot_id", flag)) |>
 
-    tidylog::select(id, date, project, aspect, site_id, elevation_m_asl, vegetation, treat_warming = treat_1, treat_competition = treat_2, block_id, plot_id, species, veg_height_cm, rep_height_cm, wet_mass_g, dry_mass_g, leaf_area_cm2, leaf_thickness_mm, sla_cm2_g, ldmc, flag) |>
+    tidylog::select(id, date, project, aspect, site_id, elevation_m_asl, treatment_warming = treat_1, treatment_competition = treat_2, block_id, plot_id, species, veg_height_cm, rep_height_cm, wet_mass_g, dry_mass_g, leaf_area_cm2, leaf_thickness_mm, sla_cm2_g, ldmc, flag) |>
     tidylog::pivot_longer(cols = c(veg_height_cm:ldmc), names_to = "traits", values_to = "value") |>
-    tidylog::filter(!is.na(value))
+    tidylog::filter(!is.na(value)) |> 
+    # add column with units
+         mutate(unit = case_when(
+                str_detect(traits, "_cm2_g") ~ "cm2 g-1",
+                str_detect(traits, "_cm2") ~ "cm2",
+                str_detect(traits, "_cm") ~ "cm",
+                str_detect(traits, "_mm") ~ "mm",
+                str_detect(traits, "_g") ~ "g",
+                TRUE ~ "g g-1")
+               ) |> 
+         mutate(
+    traits = str_remove(
+      traits,
+      "_cm2_g$|_cm2$|_cm$|_mm$|_g$"  # matches any of the known suffixes at the end
+    )
+  ) |> 
+         # merge block_id and plot_id 
+         mutate(plot_id = paste(block_id, plot_id, sep = ".")) |> 
+         select(-block_id)
 
 
 }
-
-
-# dd |>
-#   ggplot(aes(x = (leaf_area_cm2), y = log(wet_mass_g), colour = species == "satyrium longicauda")) +
-#   geom_point(alpha = 0.3)
-# dd |> filter(species == "satyrium longicauda") |> as.data.frame()

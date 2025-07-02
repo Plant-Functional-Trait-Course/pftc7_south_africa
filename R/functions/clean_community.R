@@ -170,6 +170,8 @@ clean_community <- function(raw_cover, raw_extra, raw_fertility, name_trail, hel
   # streamline with other data
   community  |>
     mutate(aspect = if_else(aspect == "W", "west", "east"),
+          # site 6 has eastern aspect
+           aspect = if_else(site_id == "6", "east", aspect),
            treatment_only_for_range_x = if_else(treatment_only_for_range_x == "Control", "ambient", "warm"),
            species = str_replace_all(species, "_", " "),
            species = case_match(species,
@@ -181,7 +183,16 @@ clean_community <- function(raw_cover, raw_extra, raw_fertility, name_trail, hel
                                 "stachys cf natalensis" ~ "stachys natalensis cf",
                                 "ledebouria cf cooperi" ~ "ledebouria cooperi cf",
                                 "less blunt leaved gnidia" ~ "less blunt leaved cinidia",
-                                .default = species))
+                                .default = species),
+           species = str_to_sentence(species)) |> 
+           rename(elevation_m_asl = elevation) |> 
+
+          # fix NA in elevation
+          mutate(elevation_m_asl = case_when(is.na(elevation_m_asl) & site_id == "2" ~ 2200,
+                                             is.na(elevation_m_asl) & site_id == "3" ~ 2400,
+                                             is.na(elevation_m_asl) & site_id == "4" ~ 2600,
+                                             TRUE ~ elevation_m_asl))
+
 
 }
 

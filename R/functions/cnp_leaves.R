@@ -33,7 +33,7 @@ get_list_chem_traits <- function(traits){
            is.na(problem_flag),
            # remove data not in the plots
            plot_id != 0) |>
-    filter(traits == "dry_mass_g") |>
+    filter(traits == "dry_mass") |>
     select(id, date, site_id, elevation_m_asl, aspect, plot_id, plant_id, species, traits, value) |>
     tidylog::filter(c(!value == 0))
 

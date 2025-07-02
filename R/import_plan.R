@@ -8,7 +8,7 @@ import_plan <- list(
     command =  get_file(node = "hk2cy",
                         file = "Data entry 13Dec.xlsx",
                         path = "raw_data",
-                        remote_path = "raw_data/raw_community_data"),
+                        remote_path = "raw_data/i_ii_raw_plant_community_composition_and_structure"),
     format = "file"
   ),
 
@@ -17,7 +17,7 @@ import_plan <- list(
     command =  get_file(node = "hk2cy",
                         file = "Species_added_during_FT_sampling.xlsx",
                         path = "raw_data",
-                        remote_path = "raw_data/raw_community_data"),
+                        remote_path = "raw_data/i_ii_raw_plant_community_composition_and_structure"),
     format = "file"
   ),
 
@@ -27,7 +27,7 @@ import_plan <- list(
     command =  get_file(node = "hk2cy",
                         file = "std_names_editing.csv",
                         path = "raw_data",
-                        remote_path = "raw_data/raw_community_data"),
+                        remote_path = "raw_data/i_ii_raw_plant_community_composition_and_structure"),
     format = "file"
   ),
 
@@ -37,7 +37,7 @@ import_plan <- list(
     command =  get_file(node = "hk2cy",
                         file = "PFTC7_SA_raw_traits_2023_versionAug2024.xlsx",
                         path = "raw_data",
-                        remote_path = "raw_data/raw_trait_data"),
+                        remote_path = "raw_data/iv_raw_aboveground_traits"),
     format = "file"
   ),
 
@@ -47,7 +47,7 @@ import_plan <- list(
     command =  get_file(node = "hk2cy",
                         file = "PFTC7_SA_raw_dry_mass_2023_versionJuly2024.csv",
                         path = "raw_data",
-                        remote_path = "raw_data/raw_trait_data"),
+                        remote_path = "raw_data/iv_raw_aboveground_traits"),
     format = "file"
   ),
 
@@ -57,7 +57,7 @@ import_plan <- list(
     command =  get_file(node = "hk2cy",
                         file = "leaf_area_scans_25Jun2024.csv",
                         path = "raw_data",
-                        remote_path = "raw_data/raw_trait_data"),
+                        remote_path = "raw_data/iv_raw_aboveground_traits"),
     format = "file"
   ),
 
@@ -66,7 +66,7 @@ import_plan <- list(
     command =  get_file(node = "hk2cy",
                         file = "leaf_area_scans_01Oct2024.csv",
                         path = "raw_data",
-                        remote_path = "raw_data/raw_trait_data"),
+                        remote_path = "raw_data/iv_raw_aboveground_traits"),
     format = "file"
   ),
 
@@ -75,7 +75,7 @@ import_plan <- list(
     command =  get_file(node = "hk2cy",
                         file = "aster_senecio_fixed_leaf_areas_kag.csv",
                         path = "raw_data",
-                        remote_path = "raw_data/raw_trait_data"),
+                        remote_path = "raw_data/iv_raw_aboveground_traits"),
     format = "file"
   ),
 
@@ -85,7 +85,7 @@ import_plan <- list(
     command =  get_file(node = "hk2cy",
                         file = "Heli_name_changes.xlsx",
                         path = "raw_data",
-                        remote_path = "raw_data/raw_trait_data"),
+                        remote_path = "raw_data/iv_raw_aboveground_traits"),
     format = "file"
   ),
 
@@ -95,7 +95,7 @@ import_plan <- list(
     command =  get_file(node = "hk2cy",
                         file = "New Helichrysum naming system.xlsx",
                         path = "raw_data",
-                        remote_path = "raw_data/raw_community_data"),
+                        remote_path = "raw_data/i_ii_raw_plant_community_composition_and_structure"),
     format = "file"
   ),
 
@@ -105,7 +105,7 @@ import_plan <- list(
     command =  get_file(node = "hk2cy",
                         file = "rangex_name_key.csv",
                         path = "raw_data",
-                        remote_path = "raw_data/raw_trait_data"),
+                        remote_path = "raw_data/iv_raw_aboveground_traits"),
     format = "file"
   ),
 
