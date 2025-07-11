@@ -119,6 +119,16 @@ import_plan <- list(
     format = "file"
   ),
 
+  # geodiversity
+  tar_target(
+    name = geodiversity_download,
+    command =  get_file(node = "hk2cy",
+                        file = "PFTC7_raw_plot_level_data_geodiversity.csv",
+                        path = "raw_data",
+                        remote_path = "raw_data/xiii_geodiversity_microtopography"),
+    format = "file"
+  ),
+
 
   ### IMPORT DATA
 
@@ -216,7 +226,7 @@ import_plan <- list(
 
   tar_target(
     name = raw_geodiv,
-    command = read_excel(path = "raw_data/PFTC7_raw_plot_level_data_geodiversity.xlsx")
+    command = read_csv(file = geodiversity_download, col_names = TRUE)
   )
 
 )
