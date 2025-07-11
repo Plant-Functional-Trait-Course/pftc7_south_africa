@@ -131,8 +131,9 @@ clean_rangex_traits <- function(raw_traitsX, dry_mass, leaf_area, rangeX_name){
       "_cm2_g$|_cm2$|_cm$|_mm$|_g$"  # matches any of the known suffixes at the end
     )
   ) |> 
-         # merge block_id and plot_id 
-         mutate(plot_id = paste(block_id, plot_id, sep = ".")) |> 
+         # merge block_id and plot_id and fix wrong plot_id
+         mutate(plot_id = paste(block_id, plot_id, sep = "."),
+         plot_id = if_else(plot_id %in% c("4.4", "6.3", "NA.NA"), NA_character_, plot_id)) |> 
          select(-block_id)
 
 
