@@ -23,7 +23,7 @@ import_plan <- list(
 
   # name trail
   tar_target(
-    name = name_trail_download,
+    name = name_trail_download2,
     command =  get_file(node = "hk2cy",
                         file = "std_names_editing.csv",
                         path = "raw_data",
@@ -156,7 +156,7 @@ import_plan <- list(
   # name trail
   tar_target(
     name = name_trail,
-    command = read_csv(file = name_trail_download)
+    command = read_csv(file = name_trail_download2)
   ),
 
   # comm structure
