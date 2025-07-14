@@ -4,14 +4,14 @@ cleaning_plan <- list(
 
   # clean community
   tar_target(
-    name = community,
+    name = community_clean,
     command = clean_community(raw_cover, raw_extra, raw_fertility, name_trail, heli_naming_system)
   ),
 
   # community gradient
   tar_target(
     name = community_gradient,
-    command = community |> 
+    command = community_clean |> 
       filter(site_id != "6") |> 
       select(date, aspect, site_id, elevation_m_asl, species:fertility_all)
   ),
@@ -19,7 +19,7 @@ cleaning_plan <- list(
   # community warming experiment
   tar_target(
     name = community_experiment,
-    command = community |> 
+    command = community_clean |> 
       filter(site_id == "6") |> 
       mutate(treatment_competition = "vegetation") |> 
       select(date, aspect, site_id, elevation_m_asl, treatment_warming = treatment_only_for_range_x, treatment_competition, plot_id, species:fertility_all)
@@ -57,7 +57,7 @@ cleaning_plan <- list(
 
   # clean traits step 1: initial cleaning and fixing names
   tar_target(
-    name = traits,
+    name = traits_clean,
     command = clean_traits_step1(raw_traits, name_trail, tochange, heli_naming_system, dry_mass, leaf_area)
   ),
 
