@@ -40,7 +40,7 @@ output_plan <- list(
   # experiment
   tar_target(
     name = traits_out,
-    command = save_csv(file = traits,
+    command = save_csv(file = traits_clean,
                        nr = "iv",
                        name = "elevationgradient_traits_2023")
   ),
@@ -56,7 +56,7 @@ output_plan <- list(
   # select cnp leaves and make table
   tar_target(
     name = cnp_full_list,
-    command = get_list_chem_traits(traits)
+    command = get_list_chem_traits(traits_clean)
   ),
 
   # select 3 random samples per
@@ -90,7 +90,7 @@ output_plan <- list(
   # species list
   tar_target(
     name = sp_out,
-    command = make_sp_list(community, traits) %>%
+    command = make_sp_list(community_clean, traits_clean) %>%
       save_csv(file = .,
                nr = "i",
                name = "species_list_2023")
@@ -107,5 +107,3 @@ output_plan <- list(
 
 
 )
-
-

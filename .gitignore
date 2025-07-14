@@ -74,3 +74,5 @@ _targets_r
 _targets.yaml
 run.R
 run.sh
+
+settings.json
