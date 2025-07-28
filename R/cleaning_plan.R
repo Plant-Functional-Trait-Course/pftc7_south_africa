@@ -13,7 +13,7 @@ cleaning_plan <- list(
     name = community_gradient,
     command = community_clean |> 
       filter(site_id != "6") |> 
-      select(date, aspect, site_id, elevation_m_asl, species:fertility_all)
+      select(date, aspect, site_id, elevation_m_asl, plot_id, species:fertility_all)
   ),
 
   # community warming experiment

@@ -115,7 +115,7 @@ import_plan <- list(
     command =  get_file(node = "hk2cy",
                         file = "Biomass_data_18Jan2024_forsharing.xlsx",
                         path = "raw_data",
-                        remote_path = "raw_data/raw_biomass_data"),
+                        remote_path = "raw_data/iii_raw_aboveground_biomass"),
     format = "file"
   ),
 
