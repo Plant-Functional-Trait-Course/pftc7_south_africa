@@ -109,6 +109,30 @@ import_plan <- list(
     format = "file"
   ),
 
+  # chemical traits
+  tar_target(
+    name = chemical_traits_download,
+    command =  get_file(node = "hk2cy",
+                        file = "iv_PFTC7_raw_cn_traits.zip",
+                        path = "raw_data",
+                        remote_path = "raw_data/iv_raw_aboveground_traits"),
+    format = "file"
+  ),
+
+  tar_target(
+    name = chemical_traits_unzipped,
+    command = {
+      dest <- "raw_data/SA_CN_ISO_RESULTS"
+      utils::unzip(
+        zipfile = chemical_traits_download,
+        exdir = "raw_data",
+        overwrite = TRUE
+      )
+      list.files(dest, pattern = "\\.xlsx$", full.names = TRUE, recursive = TRUE)
+    },
+    format = "file"
+  ),
+
   # biomass
   tar_target(
     name = biomass_download,
@@ -227,6 +251,19 @@ import_plan <- list(
   tar_target(
     name = raw_geodiv,
     command = read_csv(file = geodiversity_download, col_names = TRUE)
+  ),
+
+  # chemical traits (CN and isotopes)
+  tar_target(
+    name = raw_cn_traits,
+    command = {
+      chemical_traits_unzipped |>
+        set_names() |>
+        purrr::map_df(
+          \(path) read_excel(path, skip = 13, col_types = "text"),
+          .id = "filename"
+        )
+    }
   )
 
 )

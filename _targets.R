@@ -9,7 +9,7 @@ library(targets)
 
 # Set target options:
 tar_option_set(
-  packages = c("tidyverse", "janitor", "dataDownloader", "readxl") # packages that your targets need to run
+  packages = c("tidyverse", "tidylog", "janitor", "dataDownloader", "readxl", "PFTCFunctions") # packages that your targets need to run
 )
 
 # tar_make_clustermq() is an older (pre-{crew}) way to do distributed computing

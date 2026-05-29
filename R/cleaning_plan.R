@@ -78,6 +78,12 @@ cleaning_plan <- list(
   tar_target(
     name = geodiv,
     command = clean_geodiv(raw_geodiv)
+  ),
+
+  # clean chemical traits (gradient CN and isotopes)
+  tar_target(
+    name = chem_traits_clean,
+    command = clean_chem_traits(raw_cn_traits, traits_clean)
   )
 
 )
