@@ -45,6 +45,15 @@ output_plan <- list(
                        name = "elevationgradient_traits_2023")
   ),
 
+  tar_target(
+    name = chemical_traits_out,
+    command = save_csv(
+      file = chem_traits_clean,
+      nr = "iv",
+      name = "elevationgradient_chemical_traits_2023"
+    )
+  ),
+
   # experiment
   tar_target(
     name = rangeX_traits_out,
